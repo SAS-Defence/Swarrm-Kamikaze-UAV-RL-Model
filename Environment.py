@@ -38,18 +38,26 @@ class SwarmBattlefield2D:
             'radar': 0.10  # %10
         }
 
-        # Ödül ve ceza parametreleri
         self.reward_params = {
-            'destroy_reward_multiplier': 20,  # Yok etme ödülü çarpanı
-            'damage_reward': 5,  # Hasar verme ödülü
-            'proximity_reward': 0.2,  # Hedefe yaklaşmayı biraz daha ödüllendir
-            'discovery_reward': 3,  # Keşif ödülü
-            'movement_penalty': -0.005,  # Hareket cezasını biraz yumuşattık
-            'battery_penalty': -0.1,  # Batarya cezası
-            'death_penalty': -25,  # Yok olma cezası
-            'teamwork_bonus': 5,  # Takım çalışması bonusu
-            'efficiency_bonus': 10,  # Verimlilik bonusu
-            'survival_bonus': 0.01  # Hayatta kalmaya verilen bonusu azalttık
+            # YOK ETME ÖDÜLLERİ - ARTIRILDI
+            'destroy_reward_multiplier': 30,  # Tank yok etmek = 30 * 15 = 450 puan!
+            'damage_reward': 8,  # Her hasar = 8 puan
+
+            # YAKLAŞMA VE KEŞİF - ARTIRILDI
+            'proximity_reward': 1.0,  # Hedefe yaklaşma ödülü
+            'discovery_reward': 5,  # Yeni hedef keşfi = 5 puan
+
+            # CEZALAR - AZALTILDI (öğrenmeyi kolaylaştırır)
+            'movement_penalty': -0.001,  # Hareket cezası çok düşük
+            'battery_penalty': -0.05,  # Batarya cezası yumuşatıldı
+            'death_penalty': -15,  # Ölüm cezası azaltıldı
+
+            # TAKIM ÇALIŞMASI - ARTIRILDI
+            'teamwork_bonus': 15,  # Koordineli saldırı = 15 puan
+            'efficiency_bonus': 20,  # Verimlilik bonusu artırıldı
+
+            # HAYATTA KALMA - ARTIRILDI
+            'survival_bonus': 0.05  # Her adımda küçük bonus
         }
 
         # Ortam değişkenleri

@@ -12,6 +12,7 @@ warnings.filterwarnings('ignore')
 from Environment import SwarmBattlefield2D
 from TrainLoop import HierarchicalSwarmTrainer
 from Visualization import SwarmVisualization
+from SwarmCoordinator import SwarmCoordinator  # YENİ!
 
 
 class SwarmTrainingManager:
@@ -19,6 +20,7 @@ class SwarmTrainingManager:
         self.config = self._load_config(config_path)
         self.env = None
         self.trainer = None
+        self.coordinator = None  # YENİ!
         self.visualizer = SwarmVisualization()
 
         # Sonuç dizinleri
@@ -31,54 +33,59 @@ class SwarmTrainingManager:
 
         print("=" * 70)
         print("FPV KAMİKAZE SÜRÜSÜ RL EĞİTİM SİSTEMİ")
+        print("🎯 SÜRÜ MUHAKEME VE KOORDİNASYON SİSTEMİ AKTİF")
         print("=" * 70)
 
     def _load_config(self, config_path):
-        """Konfigürasyon yükle"""
+        """Konfigürasyon yükle - GÜNCELLENMİŞ"""
         default_config = {
             # Ortam parametreleri
             'env': {
                 'width': 1200,
                 'height': 800,
-                'num_drones': 6,          # 🔒 DRONE SAYISI SABİT: 6
+                'num_drones': 6,
                 'num_targets': 12,
                 'max_steps': 1000
             },
 
-            # Eğitim parametreleri
+            # GELİŞTİRİLMİŞ eğitim parametreleri
             'training': {
-                'total_episodes': 500,
-                'batch_size': 128,
+                'total_episodes': 1000,  # ARTIRILDI
+                'batch_size': 64,  # AZALTILDI
                 'gamma': 0.99,
-                'learning_rate': 0.0003,
+                'learning_rate': 0.0001,  # AZALTILDI
                 'epsilon_start': 1.0,
-                'epsilon_end': 0.01,
-                'epsilon_decay': 0.998,
-                'tau': 0.005,
-                'buffer_size': 10000,
+                'epsilon_end': 0.1,  # ARTIRILDI
+                'epsilon_decay': 0.995,  # YAVASLATILDI
+                'tau': 0.001,  # YAVASLATILDI
+                'buffer_size': 20000,  # ARTIRILDI
                 'save_interval': 50,
                 'eval_interval': 20,
                 'render_interval': 100
             },
 
-            # Curriculum learning parametreleri
-            # ❗ Dikkat: num_drones ARTIK BURADA YOK, hep 6 kalacak
+            # GELİŞTİRİLMİŞ curriculum learning
             'curriculum': {
                 'enabled': True,
                 'stages': [
-                    # Sürüyü sabit 6 drone ile eğitiyoruz,
-                    # sadece hedef sayısı ve harita boyutu değişiyor
-                    {'episodes': 50, 'num_targets': 6, 'width': 800, 'height': 600},
-                    {'episodes': 100, 'num_targets': 9, 'width': 1000, 'height': 700},
-                    {'episodes': 350, 'num_targets': 12, 'width': 1200, 'height': 800}
+                    # Çok kolay başla - Drone sayısı sabit, hedef artar
+                    {'episodes': 100, 'num_targets': 3, 'width': 600, 'height': 400},
+                    {'episodes': 150, 'num_targets': 6, 'width': 800, 'height': 600},
+                    {'episodes': 250, 'num_targets': 9, 'width': 1000, 'height': 700},
+                    {'episodes': 500, 'num_targets': 12, 'width': 1200, 'height': 800}
                 ]
+            },
+
+            # 🎯 YENİ: Koordinasyon ayarları
+            'coordination': {
+                'enabled': True,  # Koordinatörü kullan
+                'verbose': True  # Koordinatör loglarını göster
             }
         }
 
         if config_path and os.path.exists(config_path):
             with open(config_path, 'r') as f:
                 user_config = json.load(f)
-                # Deep merge
                 import copy
                 merged_config = copy.deepcopy(default_config)
                 self._deep_update(merged_config, user_config)
@@ -101,28 +108,32 @@ class SwarmTrainingManager:
             os.makedirs(os.path.join(self.base_dir, dir_name), exist_ok=True)
 
     def setup_environment(self, stage_config=None):
-        """Ortamı kur (drone sayısı sabit tutulur)"""
-        # Ana env config'i kopyala
+        """Ortamı kur"""
         env_config = self.config['env'].copy()
 
         if stage_config:
-            # stage_config içinden SADECE width, height, num_targets, max_steps gibi
-            # şeyleri env_config'e geçiriyoruz; num_drones'u ASLA değiştirmiyoruz.
             for k, v in stage_config.items():
                 if k in ['width', 'height', 'num_targets', 'max_steps']:
                     env_config[k] = v
-                # 'episodes' gibi anahtarları görmezden geliyoruz
 
         self.env = SwarmBattlefield2D(
             width=env_config['width'],
             height=env_config['height'],
-            num_drones=env_config['num_drones'],     # 🔒 hep 6
+            num_drones=env_config['num_drones'],
             num_targets=env_config['num_targets']
         )
 
         self.env.max_steps = env_config.get('max_steps', 1000)
 
-        print(f"[SETUP] Ortam oluşturuldu: {env_config['width']}x{env_config['height']}")
+        # 🎯 KOORDİNATÖRÜ KURU
+        if self.config['coordination']['enabled']:
+            self.coordinator = SwarmCoordinator(self.env)
+            print(f"[SETUP] ✅ Sürü koordinatörü aktif!")
+        else:
+            self.coordinator = None
+            print(f"[SETUP] ⚠️  Koordinatör kapalı - bağımsız drone'lar")
+
+        print(f"[SETUP] Ortam: {env_config['width']}x{env_config['height']}")
         print(f"[SETUP] {env_config['num_drones']} drone, {env_config['num_targets']} hedef")
 
     def setup_trainer(self):
@@ -133,12 +144,10 @@ class SwarmTrainingManager:
         )
 
         print(f"[SETUP] Eğitmen oluşturuldu")
-        print(f"[SETUP] Learning rate: {self.config['training']['learning_rate']}")
-        print(f"[SETUP] Gamma: {self.config['training']['gamma']}")
-        print(f"[SETUP] Batch size: {self.config['training']['batch_size']}")
+        print(f"[SETUP] State dim: {self.trainer.state_dim} (koordinasyon dahil)")
 
     def evaluate_policy(self, num_episodes=5, render=False):
-        """Politikayı değerlendir"""
+        """Politikayı değerlendir - KOORDİNASYONLU"""
         print(f"\n[EVAL] Politik değerlendirme ({num_episodes} episode)...")
 
         eval_rewards = []
@@ -146,6 +155,10 @@ class SwarmTrainingManager:
 
         for eval_ep in range(num_episodes):
             observations = self.env.reset()
+
+            if self.coordinator:
+                self.coordinator.reset()
+
             episode_reward = 0
             done = False
 
@@ -153,6 +166,11 @@ class SwarmTrainingManager:
                 self.env.render()
 
             while not done:
+                # Koordinatörden direktif al
+                directives = None
+                if self.coordinator:
+                    directives = self.coordinator.get_strategic_actions(observations)
+
                 actions = []
 
                 for drone_id, obs in enumerate(observations):
@@ -160,8 +178,11 @@ class SwarmTrainingManager:
                         actions.append([0.0, 0.0, 0, -1])
                         continue
 
-                    # Epsilon=0 (sadece exploitation)
-                    state = self.trainer._process_observation(obs)
+                    # Direktif
+                    directive = directives[drone_id] if directives else None
+
+                    # State + direktif
+                    state = self.trainer._process_observation(obs, directive)
                     action, _, _, _ = self.trainer.agents[drone_id].get_action(state, epsilon=0.0)
 
                     move_x = float(action[0])
@@ -169,17 +190,23 @@ class SwarmTrainingManager:
                     attack = int(action[2])
                     target_id = -1
 
-                    # Eğer saldırı yapılacaksa, hedefi gözlem üzerinden seç
-                    if attack == 1:
-                        visible = obs.get('visible_targets', [])
-                        if isinstance(visible, list) and len(visible) > 0:
-                            def target_key(t):
-                                imp = float(t.get('importance', 0.0))
-                                dist = float(t.get('distance', 1.0))
-                                return (imp, - (1.0 - dist))  # önem↑, yakınlık↑
+                    # Koordinatörden hedef al
+                    if directive and directive.get('target_id', -1) >= 0:
+                        target_id = directive['target_id']
+                        if directive.get('should_attack', False):
+                            attack = 1
+                    else:
+                        # Fallback
+                        if attack == 1:
+                            visible = obs.get('visible_targets', [])
+                            if isinstance(visible, list) and len(visible) > 0:
+                                def target_key(t):
+                                    imp = float(t.get('importance', 0.0))
+                                    dist = float(t.get('distance', 1.0))
+                                    return (imp, - (1.0 - dist))
 
-                            best = max(visible, key=target_key)
-                            target_id = int(best.get('id', -1))
+                                best = max(visible, key=target_key)
+                                target_id = int(best.get('id', -1))
 
                     actions.append([move_x, move_y, attack, target_id])
 
@@ -208,6 +235,8 @@ class SwarmTrainingManager:
         """Ana eğitim döngüsü"""
         print("\n" + "=" * 70)
         print("EĞİTİM BAŞLIYOR")
+        if self.config['coordination']['enabled']:
+            print("🎯 SÜRÜ KOORDİNASYONU AKTİF")
         print("=" * 70)
 
         self.start_time = time.time()
@@ -223,7 +252,7 @@ class SwarmTrainingManager:
         print("FINAL DEĞERLENDİRME")
         print("=" * 70)
 
-        final_reward, final_success = self.evaluate_policy(num_episodes=10)
+        final_reward, final_success = self.evaluate_policy(num_episodes=10, render=False)
 
         # Final dashboard
         self.create_final_dashboard(final_reward, final_success)
@@ -232,7 +261,7 @@ class SwarmTrainingManager:
         self.print_training_summary()
 
     def _run_curriculum_training(self):
-        """Curriculum learning ile eğitim (drone sayısı sabit 6)"""
+        """Curriculum learning ile eğitim"""
         stages = self.config['curriculum']['stages']
         total_episodes = 0
         fixed_num_drones = self.config['env']['num_drones']
@@ -245,15 +274,17 @@ class SwarmTrainingManager:
             print(f"Drone: {fixed_num_drones}, Hedef: {stage['num_targets']}")
             print(f"Harita: {stage['width']}x{stage['height']}")
 
-            # Ortamı kur (drone sayısı sabit)
+            # Ortamı kur
             self.setup_environment(stage)
 
-            # İlk aşamada trainer oluştur, diğerlerinde mevcut trainer'ı kullan
+            # İlk aşamada trainer oluştur
             if stage_idx == 0:
                 self.setup_trainer()
             else:
-                # Aynı sayıda drone olduğundan sadece env'yi güncellemek yeterli
                 self.trainer.env = self.env
+                # Koordinatörü de güncelle
+                if self.coordinator:
+                    self.coordinator.env = self.env
 
             # Aşama eğitimi
             stage_start = self.trainer.episode
@@ -266,7 +297,7 @@ class SwarmTrainingManager:
             print(f"[STAGE] Aşama {stage_idx + 1} tamamlandı")
 
             # Aşama sonu değerlendirme
-            if stage_idx < len(stages) - 1:  # Son aşama değilse
+            if stage_idx < len(stages) - 1:
                 avg_reward, avg_success = self.evaluate_policy(num_episodes=3)
                 print(f"[STAGE] Aşama {stage_idx + 1} değerlendirmesi:")
                 print(f"       Ortalama Ödül: {avg_reward:.2f}")
@@ -283,12 +314,11 @@ class SwarmTrainingManager:
             self._train_single_episode()
 
     def _train_single_episode(self):
-        """Tek episode eğit"""
+        """Tek episode eğit - KOORDİNASYONLU"""
         episode_num = self.trainer.episode + 1
-        total_episodes = self.config['training']['total_episodes']
 
-        # Episode eğitimi
-        episode_reward, info = self.trainer.train_episode()
+        # 🎯 KOORDİNATÖRÜ KULLANARAK EĞİT
+        episode_reward, info = self.trainer.train_episode(coordinator=self.coordinator)
 
         # Kayıt
         log_entry = {
@@ -300,6 +330,12 @@ class SwarmTrainingManager:
             'epsilon': self.trainer.epsilon,
             'timestamp': datetime.now().isoformat()
         }
+
+        # Koordinatör bilgilerini ekle
+        if self.coordinator:
+            coord_summary = self.coordinator.get_mission_summary()
+            log_entry['coordination'] = coord_summary
+
         self.training_log.append(log_entry)
 
         # Periyodik işlemler
@@ -332,7 +368,6 @@ class SwarmTrainingManager:
 
         # Görselleştirme
         if episode_num % render_interval == 0:
-            # Dashboard oluştur
             dashboard = self.visualizer.create_training_dashboard(
                 self.trainer.history,
                 current_episode=episode_num
@@ -365,13 +400,13 @@ class SwarmTrainingManager:
         comparison_fig.savefig(comparison_path, dpi=200, bbox_inches='tight')
         plt.close(comparison_fig)
 
-        # 3. Interactive dashboard (HTML)
+        # 3. Interactive dashboard
         interactive_fig = self.visualizer.create_interactive_dashboard(self.trainer.history)
         if interactive_fig:
             interactive_path = os.path.join(self.base_dir, 'dashboards', 'interactive_dashboard.html')
             interactive_fig.write_html(interactive_path)
 
-        # 4. Final summary plot
+        # 4. Final summary
         self._create_final_summary_plot(final_reward, final_success)
 
         print(f"[FINAL] Dashboard'lar kaydedildi: {self.base_dir}/plots/")
@@ -387,7 +422,6 @@ class SwarmTrainingManager:
 
             axes[0, 0].plot(episodes, rewards, 'b-', alpha=0.5, linewidth=1)
 
-            # Smooth
             if len(rewards) > 10:
                 window = min(50, len(rewards))
                 moving_avg = pd.Series(rewards).rolling(window=window).mean()
@@ -430,7 +464,7 @@ class SwarmTrainingManager:
                 final_rates.append(0)
 
         bars = axes[1, 0].bar(target_types, final_rates, color=target_colors, alpha=0.8)
-        axes[1, 0].set_title('Hedef Tipi Başarı Oranları (Final)', fontsize=14, fontweight='bold')
+        axes[1, 0].set_title('Hedef Tipi Başarı Oranları', fontsize=14, fontweight='bold')
         axes[1, 0].set_ylabel('Başarı %')
         axes[1, 0].set_ylim(0, 100)
 
@@ -449,6 +483,10 @@ class SwarmTrainingManager:
 
         summary_text = "EĞİTİM ÖZETİ\n"
         summary_text += "=" * 40 + "\n\n"
+
+        if self.config['coordination']['enabled']:
+            summary_text += "🎯 SÜRÜ KOORDİNASYONU: AKTİF\n\n"
+
         summary_text += f"Toplam Episode: {self.trainer.episode}\n"
         summary_text += f"Toplam Adım: {self.trainer.total_steps}\n"
         summary_text += f"Eğitim Süresi: {hours:02d}:{minutes:02d}:{seconds:02d}\n\n"
@@ -462,21 +500,21 @@ class SwarmTrainingManager:
         summary_text += f"Final Ödül: {final_reward:.2f}\n"
         summary_text += f"Final Başarı: {final_success:.1f}%\n\n"
 
-        summary_text += "PERFORMANS DEĞERLENDİRMESİ:\n"
+        summary_text += "PERFORMANS:\n"
         if final_success > 70:
-            summary_text += "✅ MÜKEMMEL! Sürü etkili şekilde çalışıyor.\n"
+            summary_text += "✅ MÜKEMMEL! Sürü koordineli çalışıyor.\n"
         elif final_success > 40:
-            summary_text += "👍 İYİ! Sürü temel görevleri yerine getirebiliyor.\n"
+            summary_text += "👍 İYİ! Koordinasyon gelişiyor.\n"
         elif final_success > 15:
             summary_text += "⚠️  ORTA! Daha fazla eğitim gerekli.\n"
         else:
-            summary_text += "❌ DÜŞÜK! Hyperparameter ayarı veya daha uzun eğitim gerekli.\n"
+            summary_text += "❌ DÜŞÜK! Parametre ayarı gerekli.\n"
 
         axes[1, 1].text(0.05, 0.95, summary_text, transform=axes[1, 1].transAxes,
                         fontsize=10, verticalalignment='top',
                         bbox=dict(boxstyle='round', facecolor='lightyellow', alpha=0.8))
 
-        plt.suptitle('FPV Kamikaze Sürüsü RL Eğitim Sonuçları',
+        plt.suptitle('FPV Kamikaze Sürüsü - Koordinasyonlu RL Eğitimi',
                      fontsize=18, fontweight='bold', y=1.02)
 
         plt.tight_layout()
@@ -514,11 +552,13 @@ class SwarmTrainingManager:
             print(f"   En İyi: {np.max(success):.1f}%")
             print(f"   Son: {success[-1]:.1f}%")
 
+        if self.config['coordination']['enabled']:
+            print(f"\n🎯 Koordinasyon: AKTİF ✅")
+
         print(f"\n📁 Sonuçlar: {self.base_dir}/")
         print(f"   📊 Grafikler: {self.base_dir}/plots/")
         print(f"   💾 Modeller: {self.base_dir}/models/")
         print(f"   📝 Loglar: {self.base_dir}/logs/")
-        print(f"   🎨 Dashboard'lar: {self.base_dir}/dashboards/")
 
         print("\n" + "=" * 70)
         print("EĞİTİM TAMAMLANDI! 🎉")
@@ -528,10 +568,9 @@ class SwarmTrainingManager:
 def main():
     """Ana fonksiyon"""
     print("FPV Kamikaze Sürüsü RL Eğitim Sistemi")
-    print("Version: 2.0 - Gelişmiş")
+    print("Version: 3.0 - Sürü Koordinasyonu")
 
-    # Konfigürasyon dosyası (opsiyonel)
-    config_path = None  # "config.json" varsa buraya yaz
+    config_path = None
 
     # Training manager oluştur
     manager = SwarmTrainingManager(config_path)
@@ -540,27 +579,25 @@ def main():
     try:
         manager.run_training()
     except KeyboardInterrupt:
-            print("\n\n⚠️  Eğitim kullanıcı tarafından durduruldu!")
-            print("   Mevcut model ve loglar kaydediliyor...")
+        print("\n\n⚠️  Eğitim durduruldu!")
+        print("   Model kaydediliyor...")
 
-            # Mevcut durumu kaydet
-            if manager.trainer:
-                model_path = os.path.join(manager.base_dir, 'models', 'interrupted_model.pth')
-                manager.trainer.save_model(os.path.dirname(model_path))
+        if manager.trainer:
+            model_path = os.path.join(manager.base_dir, 'models', 'interrupted_model.pth')
+            manager.trainer.save_model(os.path.dirname(model_path))
 
-                # Dashboard oluştur
-                if manager.trainer.history:
-                    dashboard = manager.visualizer.create_training_dashboard(
-                        manager.trainer.history,
-                        current_episode=manager.trainer.episode
-                    )
-                    dashboard_path = os.path.join(manager.base_dir, 'plots', 'interrupted_dashboard.png')
-                    dashboard.savefig(dashboard_path, dpi=150, bbox_inches='tight')
-                    plt.close(dashboard)
+            if manager.trainer.history:
+                dashboard = manager.visualizer.create_training_dashboard(
+                    manager.trainer.history,
+                    current_episode=manager.trainer.episode
+                )
+                dashboard_path = os.path.join(manager.base_dir, 'plots', 'interrupted_dashboard.png')
+                dashboard.savefig(dashboard_path, dpi=150, bbox_inches='tight')
+                plt.close(dashboard)
 
-            print(f"   Kaydedildi: {manager.base_dir}/")
+        print(f"   Kaydedildi: {manager.base_dir}/")
     except Exception as e:
-        print(f"\n\n❌ Eğitim sırasında hata: {e}")
+        print(f"\n\n❌ Hata: {e}")
         import traceback
         traceback.print_exc()
 
