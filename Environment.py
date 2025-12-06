@@ -512,18 +512,17 @@ class SwarmBattlefield2D:
                             drone['total_kills'] += 1
                             self.metrics['total_destroyed'] += 1
 
-                            # Yok etme ödülü
+                            # Yok etme ödülü - TÜM ATTACKERS'A DAĞIT
                             destroy_reward = target['importance'] * self.reward_params['destroy_reward_multiplier']
-                            rewards[i] += destroy_reward
-
+                            
                             # Tüm saldıran drone'lara ödül dağıt
                             for attacker_id in target['attackers']:
                                 if attacker_id < len(rewards):
-                                    # Ana saldıran daha çok ödül alsın
+                                    # Ana saldıran tam ödül, diğerleri yardımcı ödül
                                     if attacker_id == drone['id']:
-                                        rewards[attacker_id] += destroy_reward * 0.7
+                                        rewards[attacker_id] += destroy_reward  # TAM ÖDÜL
                                     else:
-                                        rewards[attacker_id] += destroy_reward * 0.3
+                                        rewards[attacker_id] += destroy_reward * 0.3  # YARDIMCI ÖDÜL
 
                             # Takım çalışması bonusu
                             if len(target['attackers']) >= target['required_drones']:
@@ -545,6 +544,11 @@ class SwarmBattlefield2D:
 
     def _update_drone_status(self):
         """Drone durumlarını güncelle"""
+        # DÜZELTME: Önce yok edilmiş hedeflerin attackers setini temizle
+        for target in self.targets:
+            if target['destroyed']:
+                target['attackers'].clear()
+        
         for drone in self.drones:
             if drone['destroyed']:
                 continue
