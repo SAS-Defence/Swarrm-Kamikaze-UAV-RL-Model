@@ -175,8 +175,8 @@ class SwarmCoordinator:
 
             if current < required and target_info['priority_score'] > 70:
                 # Yüksek öncelikli hedef, yetersiz drone
-                print(
-                    f"[COORDINATOR] ⚠️  Hedef {target_id} ({target_info['type']}) için destek gerekli: {current}/{required} drone")
+                # print(f"[COORDINATOR] ⚠️  Hedef {target_id} ({target_info['type']}) için destek gerekli: {current}/{required} drone")
+                pass
 
     def _assign_idle_drones(self, available_targets):
         """

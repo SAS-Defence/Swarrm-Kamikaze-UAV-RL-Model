@@ -73,6 +73,8 @@ class SwarmBattlefield2D:
             'total_discoveries': 0,
             'total_movement': 0
         }
+        
+        self.engaged_target_ids = set()  # Persistent angaje takibi
 
         print(f"[ENV] Harita: {width}x{height}, {num_drones} drone, {num_targets} hedef")
         print(f"[ENV] Sensor: {self.sensor_range}, İletişim: {self.communication_range}, Saldırı: {self.attack_range}")
@@ -83,6 +85,7 @@ class SwarmBattlefield2D:
         self.drones = []
         self.time_step = 0
         self.metrics = {k: 0 for k in self.metrics.keys()}
+        self.engaged_target_ids.clear()  # Angaje listesini temizle
 
         # Hedefleri stratejik olarak yerleştir
         self._deploy_targets_strategically()
@@ -499,6 +502,7 @@ class SwarmBattlefield2D:
 
                         # Saldıran drone'lar listesine ekle
                         target['attackers'].add(drone['id'])
+                        self.engaged_target_ids.add(target_id)  # Persistent angaje track
                         drone['status'] = 'attacking'
                         drone['target_id'] = target_id
 
@@ -628,14 +632,17 @@ class SwarmBattlefield2D:
 
         # Başarı oranı - SADECE ANGAJE OLAN HEDEFLER
         # Kamikaze drone'lar için: Sadece angaje edilen hedeflerden imha edilenlerin oranı
-        engaged_targets = [t for t in self.targets if len(t['attackers']) > 0]
-        destroyed_engaged = sum(1 for t in engaged_targets if t['destroyed'])
+        engaged_count = len(self.engaged_target_ids)
+        destroyed_engaged = sum(1 for t_id in self.engaged_target_ids 
+                              if self.targets[t_id]['destroyed'])
         
-        success_rate = (destroyed_engaged / len(engaged_targets)) * 100 if engaged_targets else 0
+        success_rate = (destroyed_engaged / engaged_count) * 100 if engaged_count > 0 else 0
 
         # Önem ağırlıklı başarı (sadece angaje olanlar)
-        weighted_success = sum(t['importance'] for t in engaged_targets if t['destroyed'])
-        total_engaged_importance = sum(t['importance'] for t in engaged_targets)
+        weighted_success = sum(self.targets[t_id]['importance'] for t_id in self.engaged_target_ids 
+                             if self.targets[t_id]['destroyed'])
+        total_engaged_importance = sum(self.targets[t_id]['importance'] for t_id in self.engaged_target_ids)
+        
         weighted_rate = (weighted_success / total_engaged_importance * 100) if total_engaged_importance > 0 else 0
 
         info = {
@@ -643,7 +650,7 @@ class SwarmBattlefield2D:
             'episode_length': self.time_step,
             'destroyed_targets': destroyed_targets,
             'total_targets': len(self.targets),
-            'engaged_targets': len(engaged_targets),  # YENİ: Kaç hedef angaje edildi
+            'engaged_targets': engaged_count,  # YENİ: Kaç hedef angaje edildi
             'success_rate': success_rate,  # Artık sadece angaje olanlardan hesaplanıyor
             'weighted_success_rate': weighted_rate,
             **self.metrics,
