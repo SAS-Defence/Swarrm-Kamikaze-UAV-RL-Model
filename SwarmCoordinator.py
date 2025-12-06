@@ -145,10 +145,32 @@ class SwarmCoordinator:
 
         - Hedef yok edildiyse, o drone'ları serbest bırak
         - Yetersiz drone varsa, destek çağır
+        - Ölü drone'ları atamalardan temizle
         """
         target_ids = {t['id'] for t in available_targets}
 
-        # Yok edilmiş hedeflere atanmış drone'ları serbest bırak
+        # 1. Önce ölü drone'ları temizle
+        for target_id in list(self.target_assignments.keys()):
+            # Canlı olanları filtrele
+            active_drones = []
+            moved_to_destroyed = False
+            
+            for drone_id in self.target_assignments[target_id]:
+                if not self.env.drones[drone_id]['destroyed']:
+                    active_drones.append(drone_id)
+                else:
+                    moved_to_destroyed = True
+                    # State güncelle
+                    if drone_id in self.drone_states:
+                        self.drone_states[drone_id]['status'] = 'destroyed'
+                        self.drone_states[drone_id]['target'] = None
+            
+            # Listeyi güncelle
+            if moved_to_destroyed:
+                 self.target_assignments[target_id] = active_drones
+                 print(f"[COORDINATOR] 💀 Hedef {target_id} için ölü drone'lar temizlendi. Kalan: {len(active_drones)}")
+
+        # 2. Yok edilmiş hedeflere atanmış drone'ları serbest bırak
         assignments_to_remove = []
 
         for target_id, drone_ids in self.target_assignments.items():
@@ -157,7 +179,7 @@ class SwarmCoordinator:
                 print(f"[COORDINATOR] ✅ Hedef {target_id} imha edildi! Drone'lar {drone_ids} serbest bırakılıyor")
 
                 for drone_id in drone_ids:
-                    if drone_id in self.drone_states:
+                    if drone_id in self.drone_states and not self.env.drones[drone_id]['destroyed']:
                         self.drone_states[drone_id]['status'] = 'idle'
                         self.drone_states[drone_id]['target'] = None
 
@@ -359,12 +381,12 @@ class SwarmCoordinator:
 
         # Atanmış hedef varsa ve ona gidiyorsa
         if state['target'] is not None:
-            reward += 2.0  # Görev odaklı olma ödülü
+            reward += 0.2  # Görev odaklı olma ödülü (AZALTILDI)
 
             # Takım arkadaşlarıyla koordinasyon
             teammates = self.target_assignments.get(state['target'], [])
             if len(teammates) > 1:
-                reward += 1.0 * len(teammates)  # Takım çalışması bonusu
+                reward += 0.1 * len(teammates)  # Takım çalışması bonusu (AZALTILDI)
 
         return reward
 

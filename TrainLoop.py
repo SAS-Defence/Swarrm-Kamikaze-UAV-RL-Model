@@ -446,6 +446,14 @@ class HierarchicalSwarmTrainer:
                 self.history['success_rate'].append(info['success_rate'])
                 self.recent_success_rates.append(info['success_rate'])
 
+            # 📊 DETAYLI METRİKLERİ KAYDET (YENİ)
+            # Info sözlüğündeki _rate, _destroyed, avg_ gibi metrikleri history'e ekle
+            for key, value in info.items():
+                if any(x in key for x in ['_rate', '_destroyed', 'avg_', 'total_']):
+                    # Zaten eklenmiş olanları atla (episode_rewards vs hariç)
+                    if key not in ['success_rate']:
+                        self.history.setdefault(key, []).append(value)
+
             self.episode += 1
 
             # İlerleme raporu
@@ -491,7 +499,7 @@ class HierarchicalSwarmTrainer:
                 next_min_dist = min([t.get('distance', 1.0) for t in next_visible])
 
                 if next_min_dist < min_dist:
-                    approach_reward = (min_dist - next_min_dist) * 3.0  # ARTIRILDI
+                    approach_reward = (min_dist - next_min_dist) * 1.0  # AZALTILDI (Farming engellemek için)
                     shaped_rewards[drone_id] += approach_reward
 
             # 2. Keşif ödülü
@@ -506,7 +514,7 @@ class HierarchicalSwarmTrainer:
             if len(teammates) > 0:
                 avg_teammate_dist = np.mean([t.get('distance', 1.0) for t in teammates])
                 if avg_teammate_dist < 0.5:
-                    shaped_rewards[drone_id] += 0.5
+                    shaped_rewards[drone_id] += 0.1  # AZALTILDI
 
             # 4. 🎯 KOORDİNASYON ÖDÜLLERİ (YENİ!)
             if coordinator:

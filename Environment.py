@@ -40,11 +40,11 @@ class SwarmBattlefield2D:
 
         self.reward_params = {
             # YOK ETME ÖDÜLLERİ - ARTIRILDI
-            'destroy_reward_multiplier': 30,  # Tank yok etmek = 30 * 15 = 450 puan!
+            'destroy_reward_multiplier': 100,  # Tank yok etmek = 100 * 15 = 1500 puan! (ARTIRILDI)
             'damage_reward': 8,  # Her hasar = 8 puan
 
             # YAKLAŞMA VE KEŞİF - ARTIRILDI
-            'proximity_reward': 1.0,  # Hedefe yaklaşma ödülü
+            'proximity_reward': 0.1,  # AZALTILDI (Farming engellemek için)
             'discovery_reward': 5,  # Yeni hedef keşfi = 5 puan
 
             # CEZALAR - AZALTILDI (öğrenmeyi kolaylaştırır)
@@ -57,7 +57,7 @@ class SwarmBattlefield2D:
             'efficiency_bonus': 20,  # Verimlilik bonusu artırıldı
 
             # HAYATTA KALMA - ARTIRILDI
-            'survival_bonus': 0.05  # Her adımda küçük bonus
+            'survival_bonus': 0.01  # AZALTILDI
         }
 
         # Ortam değişkenleri

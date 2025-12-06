@@ -19,7 +19,7 @@ class SwarmVisualization:
         fig = plt.figure(figsize=(20, 15))
         gs = GridSpec(4, 4, figure=fig)
 
-        # 1. Ödül Trendleri - DÜZELTİLMİŞ
+        # 1. Ödül Trendleri
         ax1 = fig.add_subplot(gs[0, :2])
         if 'episode_rewards' in history and len(history['episode_rewards']) > 0:
             rewards = history['episode_rewards']
@@ -27,13 +27,12 @@ class SwarmVisualization:
 
             ax1.plot(episodes, rewards, 'b-', linewidth=1.5, alpha=0.7, label='Episode Ödülü')
 
-            # Hareketli ortalamalar - BOYUT KONTROLÜ EKLENDİ
+            # Hareketli ortalamalar
             windows = [10, 20]
             colors = ['red', 'green']
             for i, window in enumerate(windows):
                 if len(rewards) >= window:
                     moving_avg = pd.Series(rewards).rolling(window=window).mean()
-                    # Boyut kontrolü
                     if len(moving_avg.dropna()) > 0:
                         valid_episodes = episodes[window - 1:]
                         valid_avg = moving_avg[window - 1:]
@@ -47,9 +46,68 @@ class SwarmVisualization:
             ax1.legend(loc='upper left')
             ax1.grid(True, alpha=0.3)
 
-            # Son ödülü vurgula
             if len(rewards) > 0:
                 ax1.plot(len(rewards) - 1, rewards[-1], 'ro', markersize=10)
+
+        # 2. Başarı Oranı (YENİ)
+        ax2 = fig.add_subplot(gs[0, 2])
+        if 'success_rate' in history and len(history['success_rate']) > 0:
+            success = history['success_rate']
+            episodes = range(len(success))
+
+            ax2.plot(episodes, success, 'g-', linewidth=2, label='Başarı %')
+            
+            # Trend
+            if len(success) > 5:
+                window = min(20, len(success))
+                moving_avg = pd.Series(success).rolling(window=window).mean()
+                ax2.plot(episodes[window-1:], moving_avg[window-1:], 'r--', linewidth=2, label='Trend')
+
+            ax2.set_title('Başarı Oranı', fontsize=14, fontweight='bold')
+            ax2.set_xlabel('Episode')
+            ax2.set_ylabel('Başarı %')
+            ax2.set_ylim(0, 105)
+            ax2.grid(True, alpha=0.3)
+            ax2.legend()
+
+        # 3. Epsilon Decay (YENİ)
+        ax3 = fig.add_subplot(gs[0, 3])
+        if 'epsilon' in history:
+            epsilons = history['epsilon']
+            ax3.plot(epsilons, 'orange', linewidth=2)
+            ax3.set_title('Exploration Rate (ε)', fontsize=14, fontweight='bold')
+            ax3.set_xlabel('Episode')
+            ax3.grid(True, alpha=0.3)
+
+        # 4. Hedef Başarı Oranları (YENİ - Target Breakdown)
+        ax4 = fig.add_subplot(gs[1, :])
+        target_types = ['tank', 'artillery', 'infantry', 'aircraft', 'radar']
+        rates = []
+        labels = []
+        
+        for t_type in target_types:
+            key = f'{t_type}_rate'
+            if key in history and len(history[key]) > 0:
+                # Son 20 episode ortalaması daha stabil olur
+                last_vals = history[key][-20:]
+                avg_rate = np.mean(last_vals)
+                rates.append(avg_rate)
+                labels.append(f"{t_type}\n({avg_rate:.1f}%)")
+            else:
+                rates.append(0)
+                labels.append(t_type)
+        
+        colors = ['darkgreen', 'brown', 'lightblue', 'gray', 'orange']
+        bars = ax4.bar(labels, rates, color=colors, alpha=0.8)
+        ax4.set_title('Hedef Tipi Başarı Oranları (Son 20 Ep. Ort.)', fontsize=14, fontweight='bold')
+        ax4.set_ylabel('Başarı %')
+        ax4.set_ylim(0, 100)
+        ax4.grid(axis='y', alpha=0.3)
+        
+        for bar in bars:
+            height = bar.get_height()
+            ax4.text(bar.get_x() + bar.get_width()/2., height,
+                     f'{height:.1f}%', ha='center', va='bottom')
 
         # 5. Loss Grafikleri - DÜZELTİLMİŞ
         ax5 = fig.add_subplot(gs[2, :])
@@ -90,7 +148,7 @@ class SwarmVisualization:
                 ax5.legend(loc='upper right', fontsize=8)
                 ax5.grid(True, alpha=0.3)
 
-        # ... diğer grafikler aynı kalacak ...
+
 
         # 6. Actor ve Critic Loss Ayrımı
         ax6 = fig.add_subplot(gs[3, :2])
@@ -187,11 +245,14 @@ class SwarmVisualization:
             axes[0, 1].plot(episodes, success, 'g-', linewidth=2)
             axes[0, 1].fill_between(episodes, success, alpha=0.3, color='green')
 
-            # Trend çizgisi
-            if len(success) > 1:
-                z = np.polyfit(episodes, success, 3)
-                p = np.poly1d(z)
-                axes[0, 1].plot(episodes, p(episodes), "r--", alpha=0.7, linewidth=1.5)
+            # Trend çizgisi (Robust)
+            if len(success) > 3:  # En az 4 nokta gerekli
+                try:
+                     z = np.polyfit(episodes, success, 3)
+                     p = np.poly1d(z)
+                     axes[0, 1].plot(episodes, p(episodes), "r--", alpha=0.7, linewidth=1.5)
+                except Exception:
+                     pass  # Hata olursa çizme
 
             axes[0, 1].set_title('Başarı Oranı Trendi')
             axes[0, 1].set_xlabel('Episode')
@@ -284,7 +345,7 @@ class SwarmVisualization:
 
     def create_interactive_dashboard(self, history):
         """Plotly ile interaktif dashboard"""
-        if not history.get('episode_rewards'):
+        if 'episode_rewards' not in history or len(history['episode_rewards']) == 0:
             return None
 
         # Subplot oluştur
@@ -360,23 +421,31 @@ class SwarmVisualization:
                         row=2, col=2
                     )
 
-        # 6. Hedef Başarı Oranları
-        target_types = ['tank', 'artillery', 'infantry', 'aircraft', 'radar']
-        target_colors = ['darkgreen', 'brown', 'lightblue', 'gray', 'orange']
-
-        success_rates = []
-        for target_type in target_types:
-            rate_key = f'{target_type}_rate'
-            if rate_key in history and len(history[rate_key]) > 0:
-                success_rates.append(history[rate_key][-1])
-            else:
-                success_rates.append(0)
-
-        fig.add_trace(
-            go.Bar(x=target_types, y=success_rates, name='Hedef Başarı',
-                   marker_color=target_colors),
-            row=3, col=1
-        )
+        # 6. Actor vs Critic Loss (INTERACTIVE EKLENDİ)
+        actor_keys = [k for k in history.keys() if 'actor_loss_drone_' in k]
+        critic_keys = [k for k in history.keys() if 'critic_loss_drone_' in k]
+        
+        if actor_keys and critic_keys and len(history[actor_keys[0]]) > 0:
+             actor_loss = history[actor_keys[0]]
+             critic_loss = history[critic_keys[0]]
+             episodes_loss = list(range(len(actor_loss)))
+             
+             # Smooth
+             window = min(20, len(actor_loss))
+             if window > 1:
+                  actor_smooth = pd.Series(actor_loss).rolling(window=window).mean()
+                  critic_smooth = pd.Series(critic_loss).rolling(window=window).mean()
+                  
+                  fig.add_trace(
+                      go.Scatter(x=episodes_loss[window-1:], y=actor_smooth[window-1:],
+                                 mode='lines', name='Actor Loss (Smooth)', line=dict(color='blue')),
+                      row=2, col=3
+                  )
+                  fig.add_trace(
+                      go.Scatter(x=episodes_loss[window-1:], y=critic_smooth[window-1:],
+                                 mode='lines', name='Critic Loss (Smooth)', line=dict(color='red')),
+                      row=2, col=3
+                  )
 
         # 7. Episode Uzunluğu
         if 'episode_length' in history:
