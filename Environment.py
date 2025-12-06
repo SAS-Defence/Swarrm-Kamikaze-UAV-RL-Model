@@ -15,18 +15,18 @@ class SwarmBattlefield2D:
         # Sensor ve iletişim menzilleri
         self.sensor_range = 200  # piksel
         self.communication_range = 300
-        self.attack_range = 40  # saldırı menzili
+        self.attack_range = 15  # Kamikaze saldırı menzili (yakın mesafe!)
 
         # Drone hareket hızı
         self.drone_speed = 8.0
 
-        # Hedef tipleri ve özellikleri (ZORLU)
+        # Hedef tipleri ve özellikleri - KAMİKAZE DRONE için optimize
         self.target_types = {
-            'tank': {'hp': 4, 'importance': 15, 'color': 'darkgreen', 'radius': 25, 'required_drones': 3},
-            'artillery': {'hp': 3, 'importance': 12, 'color': 'brown', 'radius': 20, 'required_drones': 2},
+            'tank': {'hp': 3, 'importance': 15, 'color': 'darkgreen', 'radius': 25, 'required_drones': 3},
+            'artillery': {'hp': 2, 'importance': 12, 'color': 'brown', 'radius': 20, 'required_drones': 2},
             'infantry': {'hp': 1, 'importance': 5, 'color': 'lightblue', 'radius': 10, 'required_drones': 1},
-            'aircraft': {'hp': 3, 'importance': 14, 'color': 'gray', 'radius': 22, 'required_drones': 2},
-            'radar': {'hp': 2, 'importance': 10, 'color': 'orange', 'radius': 15, 'required_drones': 1}
+            'aircraft': {'hp': 3, 'importance': 14, 'color': 'gray', 'radius': 22, 'required_drones': 3},
+            'radar': {'hp': 2, 'importance': 10, 'color': 'orange', 'radius': 15, 'required_drones': 2}
         }
 
         # Hedef dağılımı (gerçekçi)
@@ -504,6 +504,12 @@ class SwarmBattlefield2D:
 
                         # Hasar verme ödülü
                         rewards[i] += self.reward_params['damage_reward']
+                        
+                        # 🎯 KAMİKAZE: Saldıran drone ANINDA yok olur!
+                        drone['destroyed'] = True
+                        drone['status'] = 'destroyed'
+                        drone['health'] = 0
+                        print(f"[ENV] 💥 Drone {drone['id']} hedefe saldırdı ve kendini feda etti!")
 
                         # Hedef yok edildi mi?
                         if target['hp'] <= 0:
@@ -531,7 +537,7 @@ class SwarmBattlefield2D:
                                     if attacker_id < len(rewards):
                                         rewards[attacker_id] += teamwork_bonus
 
-                            print(f"[ENV] Drone {drone['id']} hedef {target_id} ({target['type']}) yok etti!")
+                            print(f"[ENV] ✅ Hedef {target_id} ({target['type']}) YOK EDİLDİ!")
 
                     else:
                         # Hedefe yaklaşma ödülü
@@ -620,20 +626,25 @@ class SwarmBattlefield2D:
             'total_kills': sum(d['total_kills'] for d in self.drones)
         }
 
-        # Başarı oranı
-        success_rate = (destroyed_targets / len(self.targets)) * 100 if self.targets else 0
+        # Başarı oranı - SADECE ANGAJE OLAN HEDEFLER
+        # Kamikaze drone'lar için: Sadece angaje edilen hedeflerden imha edilenlerin oranı
+        engaged_targets = [t for t in self.targets if len(t['attackers']) > 0]
+        destroyed_engaged = sum(1 for t in engaged_targets if t['destroyed'])
+        
+        success_rate = (destroyed_engaged / len(engaged_targets)) * 100 if engaged_targets else 0
 
-        # Önem ağırlıklı başarı
-        weighted_success = sum(t['importance'] for t in self.targets if t['destroyed'])
-        total_importance = sum(t['importance'] for t in self.targets)
-        weighted_rate = (weighted_success / total_importance * 100) if total_importance > 0 else 0
+        # Önem ağırlıklı başarı (sadece angaje olanlar)
+        weighted_success = sum(t['importance'] for t in engaged_targets if t['destroyed'])
+        total_engaged_importance = sum(t['importance'] for t in engaged_targets)
+        weighted_rate = (weighted_success / total_engaged_importance * 100) if total_engaged_importance > 0 else 0
 
         info = {
             'time_step': self.time_step,
             'episode_length': self.time_step,
             'destroyed_targets': destroyed_targets,
             'total_targets': len(self.targets),
-            'success_rate': success_rate,
+            'engaged_targets': len(engaged_targets),  # YENİ: Kaç hedef angaje edildi
+            'success_rate': success_rate,  # Artık sadece angaje olanlardan hesaplanıyor
             'weighted_success_rate': weighted_rate,
             **self.metrics,
             **target_stats,

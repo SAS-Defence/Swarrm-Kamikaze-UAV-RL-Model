@@ -180,12 +180,16 @@ class SwarmCoordinator:
 
     def _assign_idle_drones(self, available_targets):
         """
-        Serbest drone'ları hedeflere ata
+        Serbest drone'ları hedeflere ata - AKILLI KAMİKAZE STRATEJİSİ
 
-        Algoritma:
-        1. En yüksek öncelikli hedefi seç
-        2. Gereken drone sayısını hesapla
-        3. En yakın serbest drone'ları ata
+        PHASE 1: FOCUS-TO-KILL
+        - Yüksek öncelikli hedefleri TAM doldur
+        
+        PHASE 2: OPPORTUNISTIC KILL
+        - Kalanlarla küçük hedefleri avla (örn: piyade)
+        
+        PHASE 3: OVERFLOW
+        - Hala kalan varsa en yüksek önceliğe destek at
         """
         # Serbest drone'ları bul
         idle_drones = [
@@ -198,59 +202,77 @@ class SwarmCoordinator:
 
         print(f"[COORDINATOR] 🔍 {len(idle_drones)} serbest drone, {len(available_targets)} hedef")
 
-        # Her hedef için atama yap
+        # --- PHASE 1: FOCUS-TO-KILL ---
         for target_info in available_targets:
-            if not idle_drones:
-                break
+            if not idle_drones: break
 
             target_id = target_info['id']
             required = target_info['required_drones']
             current_assigned = len(self.target_assignments.get(target_id, []))
-
-            # Kaç drone daha gerekli?
             needed = required - current_assigned
 
-            if needed <= 0:
-                continue  # Bu hedef için yeterli drone var
+            if needed <= 0: continue
 
-            # En yakın serbest drone'ları seç
-            target_pos = target_info['position']
+            if len(idle_drones) >= needed:
+                self._assign_batch(target_info, needed, idle_drones)
+                print(f"[COORDINATOR] ✅ (P1) Hedef {target_id} ({target_info['type']}) TAM ATANDI: {needed} drone")
 
-            # Mesafe hesapla
-            drone_distances = []
-            for drone_id in idle_drones:
-                drone = self.env.drones[drone_id]
-                dist = np.sqrt((drone['x'] - target_pos[0]) ** 2 + (drone['y'] - target_pos[1]) ** 2)
-                drone_distances.append((drone_id, dist))
+        # --- PHASE 2: OPPORTUNISTIC KILL ---
+        if idle_drones:
+            for target_info in available_targets:
+                if not idle_drones: break
 
-            # En yakınları sırala
-            drone_distances.sort(key=lambda x: x[1])
+                target_id = target_info['id']
+                required = target_info['required_drones']
+                current_assigned = len(self.target_assignments.get(target_id, []))
+                needed = required - current_assigned
 
-            # Atama yap
-            assigned_count = 0
-            for drone_id, dist in drone_distances:
-                if assigned_count >= needed:
-                    break
+                if needed <= 0: continue
 
-                # Atama
-                self.target_assignments[target_id].append(drone_id)
-                self.drone_states[drone_id]['status'] = 'assigned'
-                self.drone_states[drone_id]['target'] = target_id
+                if len(idle_drones) >= needed:
+                    self._assign_batch(target_info, needed, idle_drones)
+                    print(f"[COORDINATOR] 🎯 (P2) Fırsat Hedefi {target_id} ({target_info['type']}) AVLANDI: {needed} drone")
 
-                # Bu drone artık serbest değil
-                idle_drones.remove(drone_id)
-                assigned_count += 1
+        # --- PHASE 3: OVERFLOW ---
+        if idle_drones:
+            target_info = available_targets[0]
+            # En yüksek öncelikli hedefi seçiyoruz
+            count = len(idle_drones)
+            self._assign_batch(target_info, count, idle_drones)
+            print(f"[COORDINATOR] 💪 (P3) Destek {target_info['id']} ({target_info['type']}): +{count} drone")
 
-                print(
-                    f"[COORDINATOR] 📍 Drone {drone_id} → Hedef {target_id} ({target_info['type']}, öncelik={target_info['priority_score']:.1f})")
+    def _assign_batch(self, target_info, count, idle_source):
+        """Yardımcı fonksiyon: Belirli sayıda drone'u hedefe ata"""
+        target_id = target_info['id']
+        target_pos = target_info['position']
+        
+        drone_distances = []
+        for drone_id in idle_source:
+             drone = self.env.drones[drone_id]
+             dist = np.sqrt((drone['x'] - target_pos[0]) ** 2 + (drone['y'] - target_pos[1]) ** 2)
+             drone_distances.append((drone_id, dist))
+        
+        drone_distances.sort(key=lambda x: x[1])
+        
+        for i in range(count):
+            drone_id, dist = drone_distances[i]
+            
+            self.target_assignments[target_id].append(drone_id)
+            self.drone_states[drone_id]['status'] = 'assigned'
+            self.drone_states[drone_id]['target'] = target_id
+            
+            # Listeden çıkar
+            idle_source.remove(drone_id)
 
-            if assigned_count > 0:
-                self.mission_log.append({
-                    'action': 'assign',
+            print(
+                f"[COORDINATOR] 📍 Drone {drone_id} → Hedef {target_id} ({target_info['type']}, dist={dist:.0f})"
+            )
+            
+            if len(self.target_assignments[target_id]) == target_info['required_drones']:
+                 self.mission_log.append({
+                    'action': 'full_assign',
                     'target_id': target_id,
-                    'target_type': target_info['type'],
-                    'drone_count': assigned_count,
-                    'priority': target_info['priority_score']
+                    'type': target_info['type']
                 })
 
     def _generate_directive(self, drone_id, observation, available_targets):
