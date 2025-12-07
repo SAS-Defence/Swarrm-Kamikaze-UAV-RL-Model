@@ -56,7 +56,7 @@ class SwarmTrainingManager:
                 'learning_rate': 0.0001,  # AZALTILDI
                 'epsilon_start': 1.0,
                 'epsilon_end': 0.1,  # ARTIRILDI
-                'epsilon_decay': 0.995,  # YAVASLATILDI
+                'epsilon_decay': 0.996,  # SÜPER YAVASLATILDI (Sabır Yaması)
                 'tau': 0.001,  # YAVASLATILDI
                 'buffer_size': 20000,  # ARTIRILDI
                 'save_interval': 50,
@@ -69,8 +69,8 @@ class SwarmTrainingManager:
                 'enabled': True,
                 'stages': [
                     # Çok kolay başla - Drone sayısı sabit, hedef artar
-                    {'episodes': 100, 'num_targets': 3, 'width': 600, 'height': 400},
-                    {'episodes': 150, 'num_targets': 6, 'width': 800, 'height': 600},
+                    {'episodes': 300, 'num_targets': 3, 'width': 600, 'height': 400},
+                    {'episodes': 300, 'num_targets': 6, 'width': 800, 'height': 600},
                     {'episodes': 250, 'num_targets': 9, 'width': 1000, 'height': 700},
                     {'episodes': 500, 'num_targets': 12, 'width': 1200, 'height': 800}
                 ]

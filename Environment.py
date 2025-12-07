@@ -41,7 +41,7 @@ class SwarmBattlefield2D:
         self.reward_params = {
             # YOK ETME ÖDÜLLERİ - ARTIRILDI
             'destroy_reward_multiplier': 100,  # Tank yok etmek = 100 * 15 = 1500 puan! (ARTIRILDI)
-            'damage_reward': 8,  # Her hasar = 8 puan
+            'damage_reward': 25,  # Her hasar = 25 puan (ARTIRILDI - Bireysel kar için)
 
             # YAKLAŞMA VE KEŞİF - ARTIRILDI
             'proximity_reward': 0.1,  # AZALTILDI (Farming engellemek için)
@@ -489,10 +489,13 @@ class SwarmBattlefield2D:
                 target = next((t for t in self.targets if t['id'] == target_id and not t['destroyed']), None)
 
                 if target:
-                    # Mesafeyi kontrol et
+                    # Mesafeyi kontrol et - DİNAMİK HITBOX
                     dist = self._calculate_distance(drone['x'], drone['y'], target['x'], target['y'])
+                    
+                    # Görsel yarıçap + 5px tolerans
+                    hitbox_range = target.get('radius', 15) + 5
 
-                    if dist <= self.attack_range:
+                    if dist <= hitbox_range:
                         # Hasar ver
                         damage = 1.0
                         target['hp'] -= damage

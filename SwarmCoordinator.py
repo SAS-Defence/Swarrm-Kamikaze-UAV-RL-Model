@@ -131,7 +131,8 @@ class SwarmCoordinator:
                 'required_drones': required,
                 'current_attackers': current_attackers,
                 'detected': target['detected'],
-                'needs_support': current_attackers < required and current_attackers > 0
+                'needs_support': current_attackers < required and current_attackers > 0,
+                'radius': target.get('radius', 15)
             })
 
         # Öncelik puanına göre sırala (yüksekten düşüğe)
@@ -343,8 +344,10 @@ class SwarmCoordinator:
                 drone = self.env.drones[drone_id]
                 target_pos = target_info['position']
                 dist = np.sqrt((drone['x'] - target_pos[0]) ** 2 + (drone['y'] - target_pos[1]) ** 2)
-
-                directive['should_attack'] = dist <= self.env.attack_range
+                
+                # Dinamik Hitbox: Radius + 5
+                hitbox_range = target_info.get('radius', 15) + 5
+                directive['should_attack'] = dist <= hitbox_range
             else:
                 # Hedef yok olmuş, serbest bırak
                 state['status'] = 'idle'
