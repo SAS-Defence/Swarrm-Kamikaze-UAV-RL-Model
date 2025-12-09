@@ -43,8 +43,8 @@ class SwarmTrainingManager:
             'env': {
                 'width': 1200,
                 'height': 800,
-                'num_drones': 6,
-                'num_targets': 12,
+                'num_drones': 8,   # KULLANICI İSTEĞİ: 8 Drone
+                'num_targets': 12, # KULLANICI İSTEĞİ: 12 Hedef (Kıtlık Senaryosu)
                 'max_steps': 1000
             },
 
@@ -58,7 +58,7 @@ class SwarmTrainingManager:
                 'epsilon_end': 0.1,  # ARTIRILDI
                 'epsilon_decay': 0.996,  # SÜPER YAVASLATILDI (Sabır Yaması)
                 'tau': 0.001,  # YAVASLATILDI
-                'buffer_size': 20000,  # ARTIRILDI
+                'buffer_size': 5000,  # AZALTILDI (Veri tazeliği için, PPO uyumlu)
                 'save_interval': 50,
                 'eval_interval': 20,
                 'render_interval': 100
@@ -68,11 +68,18 @@ class SwarmTrainingManager:
             'curriculum': {
                 'enabled': True,
                 'stages': [
-                    # Çok kolay başla - Drone sayısı sabit, hedef artar
-                    {'episodes': 300, 'num_targets': 3, 'width': 600, 'height': 400},
-                    {'episodes': 300, 'num_targets': 6, 'width': 800, 'height': 600},
-                    {'episodes': 250, 'num_targets': 9, 'width': 1000, 'height': 700},
-                    {'episodes': 500, 'num_targets': 12, 'width': 1200, 'height': 800}
+
+                    # AŞAMA 1: Temel Manevra (Küçük Alan)
+                    {'episodes': 300, 'num_targets': 3, 'width': 600, 'height': 600},
+                    
+                    # AŞAMA 2: Orta Ölçek (Hafif geçiş)
+                    {'episodes': 400, 'num_targets': 6, 'width': 800, 'height': 800},
+                    
+                    # AŞAMA 3: Büyük Ölçek
+                    {'episodes': 400, 'num_targets': 10, 'width': 1000, 'height': 1000},
+                    
+                    # AŞAMA 4: Tam Savaş Alanı (Sınırlandırıldı)
+                    {'episodes': 500, 'num_targets': 12, 'width': 1000, 'height': 1000}
                 ]
             },
 
@@ -335,8 +342,47 @@ class SwarmTrainingManager:
         if self.coordinator:
             coord_summary = self.coordinator.get_mission_summary()
             log_entry['coordination'] = coord_summary
+        
+        # --- PER-TARGET SUCCESS RATES (Visualization Fix) ---
+        target_stats = {k: {'total': 0, 'destroyed': 0, 'damaged': 0} for k in ['tank', 'artillery', 'infantry', 'aircraft', 'radar']}
+        for t in self.env.targets:
+            ttype = t.get('type', 'tank')
+            if ttype in target_stats:
+                target_stats[ttype]['total'] += 1
+                if t['destroyed']:
+                    target_stats[ttype]['destroyed'] += 1
+                elif t['damage_taken'] > 0: # Hasar görmüş ama patlamamış
+                    target_stats[ttype]['damaged'] += 1
+        
+        for ttype, stats in target_stats.items():
+            # Destroy Rate
+            rate = (stats['destroyed'] / stats['total'] * 100) if stats['total'] > 0 else 0
+            key = f'{ttype}_rate'
+            self.trainer.history.setdefault(key, []).append(rate)
+            log_entry[key] = rate
+
+            # Damage Rate (Hasarlı ama hayatta)
+            dmg_rate = (stats['damaged'] / stats['total'] * 100) if stats['total'] > 0 else 0
+            key_dmg = f'{ttype}_damage_rate'
+            self.trainer.history.setdefault(key_dmg, []).append(dmg_rate)
+            log_entry[key_dmg] = dmg_rate
+        # ----------------------------------------------------
+        
+        # --- HIT RATE METRIC (Kullanıcı İsteği: Vuruş Oranı) ---
+        # Toplam Hasar / Toplam Drone Sayısı
+        total_damage = self.env.metrics.get('total_damage', 0)
+        num_drones = self.config['env']['num_drones']
+        hit_rate = (total_damage / num_drones) * 100.0
+        # 100'ü geçebilir mi? Hayır, çünkü her drone max 1 hasar verip ölüyor.
+        
+        self.trainer.history.setdefault('hit_rate', []).append(hit_rate)
+        log_entry['hit_rate'] = hit_rate
+        # -------------------------------------------------------
 
         self.training_log.append(log_entry)
+
+
+
 
         # Periyodik işlemler
         save_interval = self.config['training']['save_interval']

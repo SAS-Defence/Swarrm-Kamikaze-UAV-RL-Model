@@ -27,27 +27,24 @@ class SwarmVisualization:
 
             ax1.plot(episodes, rewards, 'b-', linewidth=1.5, alpha=0.7, label='Episode Ödülü')
 
-            # Hareketli ortalamalar
-            windows = [10, 20]
-            colors = ['red', 'green']
-            for i, window in enumerate(windows):
-                if len(rewards) >= window:
-                    moving_avg = pd.Series(rewards).rolling(window=window).mean()
-                    if len(moving_avg.dropna()) > 0:
-                        valid_episodes = episodes[window - 1:]
-                        valid_avg = moving_avg[window - 1:]
-                        if len(valid_episodes) == len(valid_avg):
-                            ax1.plot(valid_episodes, valid_avg,
-                                     color=colors[i], linewidth=2, label=f'{window} Ep. Ort.')
+            # Hareketli ve Kümülatif Ortalamalar
+            # KULLANICI İSTEĞİ: "Genel Ortalama"
+            cum_avg = pd.Series(rewards).expanding().mean()
+            ax1.plot(episodes, cum_avg, 'r-', linewidth=2.5, label='Genel Ortalama')
+            
+            # Kısa vadeli trend (20 Ep) - Anlık durum için gerekli
+            if len(rewards) >= 20:
+                short_avg = pd.Series(rewards).rolling(window=20).mean()
+                ax1.plot(episodes, short_avg, 'g--', linewidth=1.5, alpha=0.7, label='Trend (20 Ep)')
 
-            ax1.set_title('Episode Ödülleri', fontsize=14, fontweight='bold')
+            ax1.set_title('Episode Ödülleri & Genel Gelişim', fontsize=14, fontweight='bold')
             ax1.set_xlabel('Episode')
             ax1.set_ylabel('Toplam Ödül')
             ax1.legend(loc='upper left')
             ax1.grid(True, alpha=0.3)
-
+            
             if len(rewards) > 0:
-                ax1.plot(len(rewards) - 1, rewards[-1], 'ro', markersize=10)
+                ax1.plot(len(rewards) - 1, rewards[-1], 'ro', markersize=8)
 
         # 2. Başarı Oranı (YENİ)
         ax2 = fig.add_subplot(gs[0, 2])
@@ -55,13 +52,11 @@ class SwarmVisualization:
             success = history['success_rate']
             episodes = range(len(success))
 
-            ax2.plot(episodes, success, 'g-', linewidth=2, label='Başarı %')
+            ax2.plot(episodes, success, 'g-', linewidth=2, alpha=0.3, label='Anlık')
             
-            # Trend
-            if len(success) > 5:
-                window = min(20, len(success))
-                moving_avg = pd.Series(success).rolling(window=window).mean()
-                ax2.plot(episodes[window-1:], moving_avg[window-1:], 'r--', linewidth=2, label='Trend')
+            # Kümülatif Ortalama (Genel Başarı)
+            cum_success = pd.Series(success).expanding().mean()
+            ax2.plot(episodes, cum_success, 'darkgreen', linewidth=2.5, label='Genel Ort.')
 
             ax2.set_title('Başarı Oranı', fontsize=14, fontweight='bold')
             ax2.set_xlabel('Episode')
@@ -70,13 +65,27 @@ class SwarmVisualization:
             ax2.grid(True, alpha=0.3)
             ax2.legend()
 
-        # 3. Epsilon Decay (YENİ)
+        # 3. Vuruş Oranı (Hit Rate) - KULLANICI İSTEĞİ (Epsilon yerine)
         ax3 = fig.add_subplot(gs[0, 3])
-        if 'epsilon' in history:
-            epsilons = history['epsilon']
-            ax3.plot(epsilons, 'orange', linewidth=2)
-            ax3.set_title('Exploration Rate (ε)', fontsize=14, fontweight='bold')
+        if 'hit_rate' in history and len(history['hit_rate']) > 0:
+            hits = history['hit_rate']
+            ax3.plot(hits, 'orange', alpha=0.3, label='Anlık')
+            
+            # Kümülatif
+            cum_hits = pd.Series(hits).expanding().mean()
+            ax3.plot(cum_hits, 'darkorange', linewidth=2.5, label='Genel Ort.')
+            
+            ax3.set_title('Vuruş Başarısı\n(Hasar Veren Drone %)', fontsize=14, fontweight='bold')
             ax3.set_xlabel('Episode')
+            ax3.set_ylabel('Vuruş %')
+            ax3.set_ylim(0, 105)
+            ax3.legend()
+            ax3.grid(True, alpha=0.3)
+        # Fallback (Eski data varsa epsilon göster)
+        elif 'epsilon' in history:
+            epsilons = history['epsilon']
+            ax3.plot(epsilons, 'gray', linewidth=2)
+            ax3.set_title('Exploration Rate (ε)', fontsize=14, fontweight='bold')
             ax3.grid(True, alpha=0.3)
 
         # 4. Hedef Başarı Oranları (YENİ - Target Breakdown)
@@ -88,65 +97,99 @@ class SwarmVisualization:
         for t_type in target_types:
             key = f'{t_type}_rate'
             if key in history and len(history[key]) > 0:
-                # Son 20 episode ortalaması daha stabil olur
-                last_vals = history[key][-20:]
-                avg_rate = np.mean(last_vals)
+                # KULLANICI İSTEĞİ: Tutarlılık için GENEL Ortalama kullan (Hasar grafiği ile aynı)
+                # last_vals = history[key][-20:] # ESKİ: Sadece son 20
+                avg_rate = np.mean(history[key]) # YENİ: Tüm Tarihçe
                 rates.append(avg_rate)
                 labels.append(f"{t_type}\n({avg_rate:.1f}%)")
             else:
                 rates.append(0)
                 labels.append(t_type)
         
-        colors = ['darkgreen', 'brown', 'lightblue', 'gray', 'orange']
-        bars = ax4.bar(labels, rates, color=colors, alpha=0.8)
-        ax4.set_title('Hedef Tipi Başarı Oranları (Son 20 Ep. Ort.)', fontsize=14, fontweight='bold')
-        ax4.set_ylabel('Başarı %')
+        # Stacked Bar Chart (Destroyed + Damaged)
+        colors_destroyed = ['darkgreen', 'brown', 'lightblue', 'gray', 'orange']
+        colors_damaged = ['lightgreen', 'rosybrown', 'cyan', 'lightgray', 'yellow']
+        
+        rates_dmg = []
+        for t_type in target_types:
+            key_dmg = f'{t_type}_damage_rate'
+            if key_dmg in history and len(history[key_dmg]) > 0:
+                # KULLANICI İSTEĞİ: Son 20 değil, GENEL ortalama
+                rates_dmg.append(np.mean(history[key_dmg])) 
+            else:
+                rates_dmg.append(0)
+
+        # Plot Destroyed (Bottom)
+        p1 = ax4.bar(labels, rates, color=colors_destroyed, alpha=0.9, label='İmha Edildi')
+        # Plot Damaged (Top)
+        p2 = ax4.bar(labels, rates_dmg, bottom=rates, color=colors_damaged, alpha=0.6, hatch='//', label='Hasar Aldı')
+
+        ax4.set_title('Genel Hedef Başarı & Hasar Oranları (Tüm Episodelar)', fontsize=14, fontweight='bold')
+        ax4.set_ylabel('Yüzde %')
         ax4.set_ylim(0, 100)
         ax4.grid(axis='y', alpha=0.3)
+        ax4.legend(loc='upper right')
         
-        for bar in bars:
-            height = bar.get_height()
-            ax4.text(bar.get_x() + bar.get_width()/2., height,
-                     f'{height:.1f}%', ha='center', va='bottom')
+        # Etiketler
+        for i, (r_dest, r_dmg) in enumerate(zip(rates, rates_dmg)):
+            total = r_dest + r_dmg
+            if total > 0:
+                ax4.text(i, total + 1, f'{total:.1f}%', ha='center', va='bottom', fontweight='bold')
+            if r_dest > 0:
+                ax4.text(i, r_dest/2, f'{r_dest:.1f}%', ha='center', va='center', color='white', fontsize=9)
 
-        # 5. Loss Grafikleri - DÜZELTİLMİŞ
-        ax5 = fig.add_subplot(gs[2, :])
-        loss_keys = [key for key in history.keys() if 'loss_drone_' in key]
+        # 5. Loss Grafikleri (Actor & Critic Ayrıştırılmış)
+        # Scaling sorunu nedeniyle (Critic çok küçük, Actor büyük) ayrı grafikler şart.
+        
+        # 5a. Actor Loss
+        ax5 = fig.add_subplot(gs[2, :2])
+        actor_keys = [k for k in history.keys() if 'actor_loss_drone_' in k]
+        if actor_keys:
+            # Sadece ilk drone'u göster (Kalabalık olmasın)
+            key = actor_keys[0]
+            if len(history[key]) > 0:
+                losses = history[key]
+                window = min(20, len(losses))
+                if window > 0:
+                    smooth = pd.Series(losses).rolling(window=window).mean()
+                    episodes = list(range(len(losses)))
+                    if len(smooth) == len(episodes):
+                        ax5.plot(episodes, smooth, 'purple', label='Actor Loss (Policy)')
+        
+        ax5.set_title('Actor Loss (Pilot Kararlılığı)', fontsize=12, fontweight='bold')
+        ax5.set_ylabel('Loss')
+        ax5.grid(True, alpha=0.3)
+        ax5.legend()
 
-        if loss_keys:
-            # İlk loss'un boyutunu kontrol et
-            first_loss_key = loss_keys[0]
-            if first_loss_key in history and len(history[first_loss_key]) > 0:
-                episodes = list(range(len(history[first_loss_key])))
+        # 5b. Critic Loss
+        ax6 = fig.add_subplot(gs[2, 2:])
+        critic_keys = [k for k in history.keys() if 'critic_loss_drone_' in k]
+        if critic_keys:
+            key = critic_keys[0]
+            if len(history[key]) > 0:
+                losses = history[key]
+                episodes = list(range(len(losses)))
 
-                for key in loss_keys[:3]:  # Sadece ilk 3 drone'u göster
-                    if key in history and len(history[key]) > 0:
-                        losses = history[key]
-                        drone_id = key.split('_')[-1]
+                ax6.set_title('Critic Loss (Hoca Tahmin Hatası)', fontsize=12, fontweight='bold')
+                ax6.set_ylabel('MSE Loss (Log Scale)')
+                
+                # 0 değerlerini temizle (Log scale hatasını önlemek için)
+                safe_losses = [max(l, 1e-10) for l in losses]
+                
+                # Yeniden çiz
+                ax6.clear()
+                if len(episodes) == len(safe_losses):
+                     # Raw Data (Daha silik)
+                     ax6.plot(episodes, safe_losses, 'magenta', linewidth=0.5, alpha=0.3, label='Critic Loss (Raw)')
+                     if len(safe_losses) > 20:
+                          # Smoothed Data (Daha belirgin)
+                          smooth_safe = pd.Series(safe_losses).rolling(window=min(20, len(safe_losses))).mean()
+                          ax6.plot(episodes, smooth_safe, 'darkmagenta', linewidth=2.0, label='Trend')
+                
+                ax6.set_yscale('log')
+                ax6.grid(True, alpha=0.3, which="both", ls="-") 
+                ax6.legend()
 
-                        # Smoothla - BOYUT KONTROLÜ
-                        window = min(20, len(losses))
-                        if window > 1 and len(losses) >= window:
-                            losses_smooth = pd.Series(losses).rolling(window=window).mean()
-                            # Boyut kontrolü
-                            valid_smooth = losses_smooth[window - 1:]
-                            valid_episodes = episodes[window - 1:]
-                            if len(valid_smooth) == len(valid_episodes):
-                                ax5.plot(valid_episodes, valid_smooth,
-                                         linewidth=1.5, alpha=0.7, label=f'Drone {drone_id}')
-                            else:
-                                # Boyut uyuşmazsa direkt plot
-                                ax5.plot(episodes[:len(losses)], losses,
-                                         linewidth=1.5, alpha=0.7, label=f'Drone {drone_id}')
-                        else:
-                            ax5.plot(episodes[:len(losses)], losses,
-                                     linewidth=1.5, alpha=0.7, label=f'Drone {drone_id}')
-
-                ax5.set_title('Loss Trendleri', fontsize=14, fontweight='bold')
-                ax5.set_xlabel('Öğrenme Adımı')
-                ax5.set_ylabel('Loss')
-                ax5.legend(loc='upper right', fontsize=8)
-                ax5.grid(True, alpha=0.3)
 
 
 
@@ -168,15 +211,32 @@ class SwarmVisualization:
                     actor_smooth = pd.Series(actor_losses).rolling(window=window).mean()
                     critic_smooth = pd.Series(critic_losses).rolling(window=window).mean()
 
-                    ax6.plot(episodes[window - 1:], actor_smooth[window - 1:],
-                             'b-', linewidth=2, label='Actor Loss')
-                    ax6.plot(episodes[window - 1:], critic_smooth[window - 1:],
-                             'r-', linewidth=2, label='Critic Loss')
+                    lns1 = ax6.plot(episodes[window - 1:], actor_smooth[window - 1:],
+                             'b-', linewidth=1.5, label='Actor Loss (Left)')
+                    ax6.set_ylabel('Actor Loss', color='blue')
+                    ax6.tick_params(axis='y', labelcolor='blue')
+
+                    # İkinci Eksen (Critic Loss için)
+                    ax6_twin = ax6.twinx()
+                    
+                    # 0 değerlerini temizle (Log scale için)
+                    safe_critic_smooth = [max(x, 1e-10) for x in critic_smooth[window - 1:]]
+                    
+                    lns2 = ax6_twin.plot(episodes[window - 1:], safe_critic_smooth,
+                             'r-', linewidth=1.5, label='Critic Loss (Right - Log)')
+                    
+                    ax6_twin.set_ylabel('Critic Loss (Log Scale)', color='red')
+                    ax6_twin.tick_params(axis='y', labelcolor='red')
+                    ax6_twin.set_yscale('log')
 
                     ax6.set_title('Actor vs Critic Loss (Drone 0)', fontsize=14, fontweight='bold')
                     ax6.set_xlabel('Öğrenme Adımı')
-                    ax6.set_ylabel('Loss')
-                    ax6.legend()
+                    
+                    # Ortak Lejant
+                    lns = lns1 + lns2
+                    labs = [l.get_label() for l in lns]
+                    ax6.legend(lns, labs, loc='upper center')
+                    
                     ax6.grid(True, alpha=0.3)
 
         # 7. Performans Metrikleri

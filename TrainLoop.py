@@ -92,7 +92,15 @@ class ImprovedA2CAgent(nn.Module):
             target_id = -1
 
             # Log prob
-            log_prob = dist.log_prob(action_sample).sum(-1)
+            # sum(-1) sonrası [Batch] olabilir. Tekli state için [1] veya [] olabilir.
+            # Bunu kesinlikle skaler yapıp liste/tensor karmaşasını önlüyoruz.
+            log_prob_val = dist.log_prob(action_sample).sum(-1)
+            
+            # Eğer tensor ise
+            if isinstance(log_prob_val, torch.Tensor):
+                log_prob = log_prob_val.detach()
+            else:
+                log_prob = torch.tensor(log_prob_val).detach()
 
             return [move_x, move_y, attack, target_id], value.item(), log_prob, action_mean
 
@@ -285,16 +293,16 @@ class HierarchicalSwarmTrainer:
                 state[39] = 1.0 if role == 'attacker' else 0.0
 
                 # Atanmış hedefe mesafe (eğer atanmışsa)
-                if target_id >= 0 and len(visible_targets) > 0:
-                    assigned_target = next((t for t in visible_targets if int(t.get('id', -1)) == target_id), None)
-                    if assigned_target:
-                        state[40] = float(assigned_target.get('distance', 1.0))
-                        state[41] = float(assigned_target.get('hp', 1.0))
-
-                        # Takım ilerlemesi
-                        attackers = float(assigned_target.get('attackers', 0.0))
-                        required = max(float(assigned_target.get('required_drones', 1.0)), 1.0)
-                        state[42] = min(attackers / required, 1.0)
+                # Atanmış hedefe mesafe ve YÖN (GPS verisi)
+                # Artık visible listesinde aramıyoruz, direkt observation'dan alıyoruz.
+                dist_gps = float(observation.get('target_distance', 1.0))
+                dir_x_gps = float(observation.get('target_direction_x', 0.0))
+                dir_y_gps = float(observation.get('target_direction_y', 0.0))
+                
+                # State'e işle [40-42]
+                state[40] = dist_gps
+                state[41] = dir_x_gps  # Eski HP yerine Yön X
+                state[42] = dir_y_gps  # Eski Progress yerine Yön Y
 
                 # Saldırı bayrağı
                 state[43] = 1.0 if directive.get('should_attack', False) else 0.0
@@ -370,7 +378,9 @@ class HierarchicalSwarmTrainer:
 
                     move_x = float(action[0])
                     move_y = float(action[1])
-                    attack = int(action[2])
+                    # DÜZELTME: int(0.99) = 0 olduğu için drone asla ateş edemiyordu!
+                    # Artık 0.0'dan büyükse ateş et (> 0.5 sigmoid/tanh için güvenli eşik)
+                    attack = 1 if action[2] > 0.0 else 0
                     target_id = -1
 
                     # 🎯 DİREKTİFE GÖRE HEDEF SEÇ
@@ -415,8 +425,8 @@ class HierarchicalSwarmTrainer:
                             'reward': torch.tensor(shaped_rewards[drone_id]).to(self.device),
                             'next_state': next_state,
                             'done': torch.tensor(done).to(self.device),
-                            'log_prob': log_probs[drone_id] if log_probs[drone_id] is not None else torch.tensor(
-                                0.0).to(self.device),
+                            # Log prob: Her zaman 0-D skaler tensor olarak sakla
+                            'log_prob': log_probs[drone_id].reshape(()) if log_probs[drone_id] is not None else torch.tensor(0.0).to(self.device),
                             'value': torch.tensor(values[drone_id]).to(self.device)
                         })
 
@@ -502,6 +512,23 @@ class HierarchicalSwarmTrainer:
                     approach_reward = (min_dist - next_min_dist) * 1.0  # AZALTILDI (Farming engellemek için)
                     shaped_rewards[drone_id] += approach_reward
 
+            # 1.5 GLOBAL NAVİGASYON (GPS) - YENİ!
+            # Hedef görünmese bile, atanan hedefe yaklaşıyorsa ödül ver
+            target_dist = obs.get('target_distance', 0)
+            next_target_dist = next_obs.get('target_distance', 0)
+            assigned_target = obs.get('assigned_target', -1)
+            
+            if assigned_target != -1 and target_dist > 0 and next_target_dist > 0:
+                 # Yaklaşıyorsa ödül ver
+                 if next_target_dist < target_dist:
+                     # Fark * 2.0 (Teşvik)
+                     # Not: target_distance normalize edilmiş (dist/sensor_range).
+                     # Sensor range 200px. 1 birim fark = 200 piksel.
+                     # Ufak hareketler bile algılanır.
+                     # 2.0 -> 5.0 ARTIRILDI (Kullanıcı İsteği: Navigasyon Yardımı Artsın)
+                     nav_reward = (target_dist - next_target_dist) * 5.0
+                     shaped_rewards[drone_id] += nav_reward
+
             # 2. Keşif ödülü
             prev_visible_count = obs.get('visible_target_count', 0)
             new_visible_count = next_obs.get('visible_target_count', 0)
@@ -509,18 +536,30 @@ class HierarchicalSwarmTrainer:
             if new_visible_count > prev_visible_count:
                 shaped_rewards[drone_id] += 2.0  # ARTIRILDI
 
-            # 3. Takım koordinasyonu ödülü
+            # 3. WINGMAN FORMASYONU (KOL UÇUŞU) - YENİ!
+            # Aynı hedefe giden arkadaşlarla yakın uçmayı ödüllendir
+            # Bu, "Dağınıklığı" önler ve "Bulut" şeklinde varışı sağlar.
             teammates = obs.get('teammates', [])
-            if len(teammates) > 0:
-                avg_teammate_dist = np.mean([t.get('distance', 1.0) for t in teammates])
-                if avg_teammate_dist < 0.5:
-                    shaped_rewards[drone_id] += 0.1  # AZALTILDI
+            assigned_target = obs.get('assigned_target', -1)
+            
+            wingman_bonus = 0.0
+            if assigned_target != -1:
+                for tm in teammates:
+                    # Sadece aynı hedefi paylaşan arkadaşa bak (Ve hayattaysa)
+                    # Not: Teammate distance normalize edilmiş (dist / 200)
+                    # 0.15 => 30 piksel (Oldukça yakın)
+                    if tm.get('target_id') == assigned_target:
+                        tm_dist = tm.get('distance', 1.0)
+                        if tm_dist < 0.15: 
+                            wingman_bonus += 0.05  # AZALTILDI (Farming engellemek için)
+            
+            shaped_rewards[drone_id] += wingman_bonus
 
             # 4. 🎯 KOORDİNASYON ÖDÜLLERİ (YENİ!)
             if coordinator:
                 coord_reward = coordinator.get_coordination_reward(drone_id)
                 shaped_rewards[drone_id] += coord_reward
-
+            
             # 5. Batarya/health cezası yumuşatması
             battery = next_obs.get('battery', 100)
             health = next_obs.get('health', 100)
@@ -533,6 +572,14 @@ class HierarchicalSwarmTrainer:
             # 6. Hareketsizlik cezası azaltıldı
             if abs(action[0]) < 0.05 and abs(action[1]) < 0.05:
                 shaped_rewards[drone_id] -= 0.05
+
+            # REWARD SCALING (Hassasiyet Ayarı)
+            # 1500 puanlık ödüller nöral ağı bozuyor (Exploding Gradients).
+            # Tüm ödülleri 100'e bölerek normalize ediyoruz.
+            # Kill: 1500 -> 15.0
+            # Hit: 35 -> 0.35
+            # Death: -15 -> -0.15
+            shaped_rewards[drone_id] /= 100.0
 
         return shaped_rewards
 
@@ -567,17 +614,37 @@ class HierarchicalSwarmTrainer:
                 if advantages.std() > 1e-8:
                     advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
 
-                # Losses
+                # 0. Eksik tanımları tamamla
                 critic_loss = F.smooth_l1_loss(values, td_targets)
+                std = torch.exp(self.agents[drone_id].log_std).clamp(0.01, 1.0) # std tanımla!
 
-                std = torch.exp(self.agents[drone_id].log_std).clamp(0.01, 1.0)
-                dist = torch.distributions.Normal(action_means, std)
-                log_probs = dist.log_prob(actions).sum(-1)
+                # PPO LOSS CALCULATION
+                # PPO LOSS CALCULATION
+                # 1. Eski log_prob'ları al
+                # Squeeze ile kesinlikle (Batch,) boyutunda olduğundan emin oluyoruz.
+                old_log_probs = torch.stack([b['log_prob'] for b in batch]).squeeze().detach()
 
-                actor_loss = -(log_probs * advantages.detach()).mean()
+                # 2. Sadece MoveX, MoveY, Attack (İlk 3 boyut) üzerinden loss hesapla!
+                # 4. boyut (Target ID) heuristics ile belirleniyor, network bunu öğrenmeye çalışmamalı.
+                active_action_means = action_means[:, :3] 
+                active_actions = actions[:, :3]
+                
+                # std de 4 boyutlu, onu da kes
+                active_std = std[:, :3]
 
+                dist = torch.distributions.Normal(active_action_means, active_std)
+                new_log_probs = dist.log_prob(active_actions).sum(-1)
+
+                # 3. Ratio ve Clipping
+                ratio = torch.exp(new_log_probs - old_log_probs)
+                surr1 = ratio * advantages.detach()
+                surr2 = torch.clamp(ratio, 1.0 - 0.2, 1.0 + 0.2) * advantages.detach()
+
+                actor_loss = -torch.min(surr1, surr2).mean()
+
+                # 4. Entropy (Exploration)
                 entropy = dist.entropy().mean()
-                entropy_bonus = 0.02 * entropy
+                entropy_bonus = 0.03 * entropy # Exploration artırıldı (Hard Mode için)
 
                 total_loss = critic_loss + actor_loss - entropy_bonus
 

@@ -256,13 +256,27 @@ class SwarmCoordinator:
                     self._assign_batch(target_info, needed, idle_drones)
                     print(f"[COORDINATOR] 🎯 (P2) Fırsat Hedefi {target_id} ({target_info['type']}) AVLANDI: {needed} drone")
 
-        # --- PHASE 3: OVERFLOW ---
+        # --- PHASE 3: OVERFLOW (DISTRIBUTED) ---
+        # Fazla drone'ları önem sırasına göre dağıt (Round-Robin)
+        # Örnek: Tank(+1), Top(+1), Piyade(0)...
         if idle_drones:
-            target_info = available_targets[0]
-            # En yüksek öncelikli hedefi seçiyoruz
-            count = len(idle_drones)
-            self._assign_batch(target_info, count, idle_drones)
-            print(f"[COORDINATOR] 💪 (P3) Destek {target_info['id']} ({target_info['type']}): +{count} drone")
+            print(f"[COORDINATOR] 💪 (P3) Fazlalık {len(idle_drones)} Drone Dağıtılıyor (Round-Robin)")
+            
+            # Sonsuz döngüden kaçınmak için kopya üzerinde çalışmayalım, direkt pop yapalım
+            while idle_drones:
+                assigned_in_this_round = False
+                for target_info in available_targets:
+                    if not idle_drones:
+                        break
+                    
+                    # 1 tane drone al
+                    single_drone = [idle_drones.pop(0)]
+                    self._assign_batch(target_info, 1, single_drone)
+                    # print(f"[COORDINATOR]   -> +1 Destek: Hedef {target_info['id']} ({target_info['type']})")
+                    assigned_in_this_round = True
+                
+                if not assigned_in_this_round:
+                    break
 
     def _assign_batch(self, target_info, count, idle_source):
         """Yardımcı fonksiyon: Belirli sayıda drone'u hedefe ata"""
@@ -384,12 +398,12 @@ class SwarmCoordinator:
 
         # Atanmış hedef varsa ve ona gidiyorsa
         if state['target'] is not None:
-            reward += 0.2  # Görev odaklı olma ödülü (AZALTILDI)
+            reward += 0.0  # MAAŞ İPTAL (Eski: 0.2)
 
             # Takım arkadaşlarıyla koordinasyon
             teammates = self.target_assignments.get(state['target'], [])
             if len(teammates) > 1:
-                reward += 0.1 * len(teammates)  # Takım çalışması bonusu (AZALTILDI)
+                reward += 0.0 * len(teammates)  # MAAŞ İPTAL (Eski: 0.1)
 
         return reward
 
