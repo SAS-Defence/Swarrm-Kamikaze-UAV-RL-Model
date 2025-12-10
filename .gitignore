@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+.env
+
+# IDE
+.idea/
+.vscode/
+
+# Project Specific
+swarm_training_results/
+models/
+*.png
+*.jpg
+*.log
