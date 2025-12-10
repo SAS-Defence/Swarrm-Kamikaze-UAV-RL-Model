@@ -69,17 +69,17 @@ class SwarmTrainingManager:
                 'enabled': True,
                 'stages': [
 
-                    # AŞAMA 1: Temel Manevra (Küçük Alan)
-                    {'episodes': 300, 'num_targets': 3, 'width': 600, 'height': 600},
+                    # AŞAMA 1: Temel Manevra (Bootcamp - Easy Mode)
+                    {'episodes': 300, 'num_targets': 3, 'width': 600, 'height': 600, 'difficulty': 0},
                     
-                    # AŞAMA 2: Orta Ölçek (Hafif geçiş)
-                    {'episodes': 400, 'num_targets': 6, 'width': 800, 'height': 800},
+                    # AŞAMA 2: Orta Ölçek (Intermediate - Medium Mode)
+                    {'episodes': 400, 'num_targets': 6, 'width': 800, 'height': 800, 'difficulty': 1},
                     
-                    # AŞAMA 3: Büyük Ölçek
-                    {'episodes': 400, 'num_targets': 10, 'width': 1000, 'height': 1000},
+                    # AŞAMA 3: Büyük Ölçek (Advanced - Hard Mode)
+                    {'episodes': 400, 'num_targets': 10, 'width': 1000, 'height': 1000, 'difficulty': 2},
                     
-                    # AŞAMA 4: Tam Savaş Alanı (Sınırlandırıldı)
-                    {'episodes': 500, 'num_targets': 12, 'width': 1000, 'height': 1000}
+                    # AŞAMA 4: Tam Savaş Alanı (Full War - Hard Mode)
+                    {'episodes': 500, 'num_targets': 12, 'width': 1000, 'height': 1000, 'difficulty': 2}
                 ]
             },
 
@@ -131,6 +131,11 @@ class SwarmTrainingManager:
         )
 
         self.env.max_steps = env_config.get('max_steps', 1000)
+        
+        # Difficulty Setup
+        if stage_config and 'difficulty' in stage_config:
+            self.env.difficulty = stage_config['difficulty']
+            print(f"[SETUP] Zorluk Seviyesi: {self.env.difficulty}") # 0=Easy, 2=Hard
 
         # 🎯 KOORDİNATÖRÜ KURU
         if self.config['coordination']['enabled']:
@@ -505,7 +510,9 @@ class SwarmTrainingManager:
         for target_type in target_types:
             rate_key = f'{target_type}_rate'
             if rate_key in self.trainer.history and len(self.trainer.history[rate_key]) > 0:
-                final_rates.append(self.trainer.history[rate_key][-1])
+                # KULLANICI İSTEĞİ: Son değer değil, ORTALAMA değer göster
+                # final_rates.append(self.trainer.history[rate_key][-1])
+                final_rates.append(np.mean(self.trainer.history[rate_key]))
             else:
                 final_rates.append(0)
 

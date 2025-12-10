@@ -1,12 +1,12 @@
 [
   {
     "episode": 1,
-    "reward": -4.856044947943358,
+    "reward": -4.779788722965181,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.996,
-    "timestamp": "2025-12-09T11:36:24.070909",
+    "timestamp": "2025-12-10T03:05:29.557635",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -43,16 +43,16 @@
   },
   {
     "episode": 2,
-    "reward": -4.911108442895103,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -3.6462874324054293,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.992016,
-    "timestamp": "2025-12-09T11:36:37.873165",
+    "timestamp": "2025-12-10T03:05:43.378183",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -75,26 +75,26 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 3,
-    "reward": -4.018364970067107,
-    "success_rate": 100.0,
-    "destroyed_targets": 1,
+    "reward": -4.711393310430818,
+    "success_rate": 0,
+    "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.988047936,
-    "timestamp": "2025-12-09T11:36:52.012552",
+    "timestamp": "2025-12-10T03:05:57.906451",
     "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 3,
       "idle_drones": 0,
-      "active_drones": 7,
+      "active_drones": 8,
       "mission_log": [
         {
           "action": "full_assign",
@@ -117,26 +117,26 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
+    "infantry_rate": 0.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 12.5
+    "hit_rate": 0.0
   },
   {
     "episode": 4,
-    "reward": -4.890299738540023,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -3.9571724026363713,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.984095744256,
-    "timestamp": "2025-12-09T11:37:05.893858",
+    "timestamp": "2025-12-10T03:06:12.079028",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -159,26 +159,26 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 5,
-    "reward": -3.7105383505339584,
-    "success_rate": 100.0,
-    "destroyed_targets": 1,
+    "reward": -4.926474136223602,
+    "success_rate": 0,
+    "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.980159361278976,
-    "timestamp": "2025-12-09T11:37:19.903290",
+    "timestamp": "2025-12-10T03:06:25.992595",
     "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 3,
       "idle_drones": 0,
-      "active_drones": 7,
+      "active_drones": 8,
       "mission_log": [
         {
           "action": "full_assign",
@@ -201,22 +201,64 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
+    "infantry_rate": 0.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 12.5
+    "hit_rate": 0.0
   },
   {
     "episode": 6,
-    "reward": -3.579500909176822,
+    "reward": -4.91916383791999,
+    "success_rate": 0,
+    "destroyed_targets": 0,
+    "destroyed_drones": 0,
+    "epsilon": 0.97623872383386,
+    "timestamp": "2025-12-10T03:06:40.017471",
+    "coordination": {
+      "active_assignments": 3,
+      "idle_drones": 0,
+      "active_drones": 8,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 0.0
+  },
+  {
+    "episode": 7,
+    "reward": -4.058540359260016,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
-    "epsilon": 0.97623872383386,
-    "timestamp": "2025-12-09T11:37:33.684976",
+    "epsilon": 0.9723337689385245,
+    "timestamp": "2025-12-10T03:06:54.815424",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -252,59 +294,17 @@
     "hit_rate": 12.5
   },
   {
-    "episode": 7,
-    "reward": -4.803405696420623,
-    "success_rate": 0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.9723337689385245,
-    "timestamp": "2025-12-09T11:37:48.107430",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 8,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 0.0
-  },
-  {
     "episode": 8,
-    "reward": -4.749906930956379,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -2.8234612950976983,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.9684444338627705,
-    "timestamp": "2025-12-09T11:38:02.202896",
+    "timestamp": "2025-12-10T03:07:09.195539",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -323,7 +323,7 @@
         }
       ]
     },
-    "tank_rate": 0.0,
+    "tank_rate": 100.0,
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
@@ -333,16 +333,16 @@
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 9,
-    "reward": -4.780442152860631,
+    "reward": -4.683958199358537,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.9645706561273194,
-    "timestamp": "2025-12-09T11:38:16.338559",
+    "timestamp": "2025-12-10T03:07:23.490913",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -379,12 +379,12 @@
   },
   {
     "episode": 10,
-    "reward": -3.7979657596423695,
+    "reward": -3.835763691249477,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.9607123735028101,
-    "timestamp": "2025-12-09T11:38:30.448790",
+    "timestamp": "2025-12-10T03:07:37.761273",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -421,12 +421,12 @@
   },
   {
     "episode": 11,
-    "reward": -3.964085461066385,
+    "reward": -3.5978710415485526,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.9568695240087989,
-    "timestamp": "2025-12-09T11:38:44.636087",
+    "timestamp": "2025-12-10T03:07:52.400145",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -463,16 +463,16 @@
   },
   {
     "episode": 12,
-    "reward": -4.729617466077901,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -3.819928956245999,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.9530420459127636,
-    "timestamp": "2025-12-09T11:38:59.031174",
+    "timestamp": "2025-12-10T03:08:06.604177",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -495,22 +495,22 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 13,
-    "reward": -4.756608960146663,
+    "reward": -4.486248294048262,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.9492298777291126,
-    "timestamp": "2025-12-09T11:39:13.219454",
+    "timestamp": "2025-12-10T03:08:21.159974",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -547,12 +547,12 @@
   },
   {
     "episode": 14,
-    "reward": -4.913595760907927,
+    "reward": -4.664115717536257,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.9454329582181962,
-    "timestamp": "2025-12-09T11:39:27.566393",
+    "timestamp": "2025-12-10T03:08:35.735208",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -589,12 +589,12 @@
   },
   {
     "episode": 15,
-    "reward": -4.853578493746779,
+    "reward": -4.72713116253099,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.9416512263853234,
-    "timestamp": "2025-12-09T11:39:41.957283",
+    "timestamp": "2025-12-10T03:08:50.474704",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -631,12 +631,12 @@
   },
   {
     "episode": 16,
-    "reward": -4.954852442358642,
+    "reward": -4.593307314007234,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.9378846214797821,
-    "timestamp": "2025-12-09T11:39:56.804151",
+    "timestamp": "2025-12-10T03:09:05.068654",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -673,16 +673,16 @@
   },
   {
     "episode": 17,
-    "reward": -4.8573410753805195,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -1.3706313837360293,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
     "destroyed_drones": 0,
     "epsilon": 0.934133082993863,
-    "timestamp": "2025-12-09T11:40:11.716511",
+    "timestamp": "2025-12-10T03:09:19.229436",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 1,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 6,
       "mission_log": [
         {
           "action": "full_assign",
@@ -701,26 +701,26 @@
         }
       ]
     },
-    "tank_rate": 0.0,
+    "tank_rate": 100.0,
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 25.0
   },
   {
     "episode": 18,
-    "reward": -4.730419987998637,
+    "reward": -4.837354067411072,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.9303965506618875,
-    "timestamp": "2025-12-09T11:40:26.691046",
+    "timestamp": "2025-12-10T03:09:33.846010",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -757,16 +757,16 @@
   },
   {
     "episode": 19,
-    "reward": -4.962254476191729,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -3.615745303273236,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.92667496445924,
-    "timestamp": "2025-12-09T11:40:41.040381",
+    "timestamp": "2025-12-10T03:09:48.844951",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -789,26 +789,26 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 20,
-    "reward": -4.877224548125745,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -2.4129497816586074,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.922968264601403,
-    "timestamp": "2025-12-09T11:40:55.601900",
+    "timestamp": "2025-12-10T03:10:03.581596",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -827,7 +827,7 @@
         }
       ]
     },
-    "tank_rate": 0.0,
+    "tank_rate": 100.0,
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
@@ -837,16 +837,16 @@
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 21,
-    "reward": -4.817049439650446,
+    "reward": -4.797853394559404,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.9192763915429975,
-    "timestamp": "2025-12-09T11:41:18.314448",
+    "timestamp": "2025-12-10T03:10:26.474596",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -883,16 +883,16 @@
   },
   {
     "episode": 22,
-    "reward": -4.684698878536838,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -3.91891177077376,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.9155992859768255,
-    "timestamp": "2025-12-09T11:41:32.669847",
+    "timestamp": "2025-12-10T03:10:41.138492",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -915,26 +915,26 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 23,
-    "reward": -4.011254978580223,
-    "success_rate": 100.0,
-    "destroyed_targets": 1,
+    "reward": -4.637129986128404,
+    "success_rate": 0,
+    "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.9119368888329182,
-    "timestamp": "2025-12-09T11:41:47.101855",
+    "timestamp": "2025-12-10T03:10:56.059225",
     "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 3,
       "idle_drones": 0,
-      "active_drones": 7,
+      "active_drones": 8,
       "mission_log": [
         {
           "action": "full_assign",
@@ -957,106 +957,22 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
+    "infantry_rate": 0.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 12.5
+    "hit_rate": 0.0
   },
   {
     "episode": 24,
-    "reward": -4.79328947869635,
-    "success_rate": 0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.9082891412775865,
-    "timestamp": "2025-12-09T11:42:01.593578",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 8,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 0.0
-  },
-  {
-    "episode": 25,
-    "reward": -4.696333440250682,
-    "success_rate": 0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.9046559847124762,
-    "timestamp": "2025-12-09T11:42:16.151865",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 8,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 0.0
-  },
-  {
-    "episode": 26,
-    "reward": -4.033023381321439,
+    "reward": -3.4574153409718362,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
-    "epsilon": 0.9010373607736263,
-    "timestamp": "2025-12-09T11:42:30.689508",
+    "epsilon": 0.9082891412775865,
+    "timestamp": "2025-12-10T03:11:10.592903",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -1092,13 +1008,55 @@
     "hit_rate": 12.5
   },
   {
-    "episode": 27,
-    "reward": -4.536098664158493,
+    "episode": 25,
+    "reward": -3.481328180485481,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
+    "destroyed_drones": 0,
+    "epsilon": 0.9046559847124762,
+    "timestamp": "2025-12-10T03:11:25.130815",
+    "coordination": {
+      "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
+  },
+  {
+    "episode": 26,
+    "reward": -4.287337817551742,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
-    "epsilon": 0.8974332113305318,
-    "timestamp": "2025-12-09T11:42:45.134249",
+    "epsilon": 0.9010373607736263,
+    "timestamp": "2025-12-10T03:11:39.939473",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -1132,19 +1090,61 @@
     "radar_rate": 0,
     "radar_damage_rate": 0,
     "hit_rate": 0.0
+  },
+  {
+    "episode": 27,
+    "reward": -1.2857909252988042,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
+    "destroyed_drones": 0,
+    "epsilon": 0.8974332113305318,
+    "timestamp": "2025-12-10T03:11:55.093377",
+    "coordination": {
+      "active_assignments": 1,
+      "idle_drones": 0,
+      "active_drones": 6,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 25.0
   },
   {
     "episode": 28,
-    "reward": -4.817058951808217,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -1.7217676453183377,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
     "destroyed_drones": 0,
     "epsilon": 0.8938434784852096,
-    "timestamp": "2025-12-09T11:42:59.662985",
+    "timestamp": "2025-12-10T03:12:09.790421",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 1,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 6,
       "mission_log": [
         {
           "action": "full_assign",
@@ -1163,30 +1163,30 @@
         }
       ]
     },
-    "tank_rate": 0.0,
+    "tank_rate": 100.0,
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 25.0
   },
   {
     "episode": 29,
-    "reward": -4.553573695290519,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -3.741000746621655,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.8902681045712688,
-    "timestamp": "2025-12-09T11:43:14.128935",
+    "timestamp": "2025-12-10T03:12:24.466662",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -1209,22 +1209,22 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 30,
-    "reward": -3.659376639813172,
+    "reward": -3.611510619898389,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.8867070321529837,
-    "timestamp": "2025-12-09T11:43:28.535131",
+    "timestamp": "2025-12-10T03:12:39.018384",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -1261,16 +1261,16 @@
   },
   {
     "episode": 31,
-    "reward": -3.037802683603026,
-    "success_rate": 50.0,
+    "reward": -3.717925572649964,
+    "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.8831602040243718,
-    "timestamp": "2025-12-09T11:43:42.780458",
+    "timestamp": "2025-12-10T03:12:53.958721",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 6,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -1290,7 +1290,7 @@
       ]
     },
     "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
+    "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
     "infantry_rate": 100.0,
@@ -1299,16 +1299,16 @@
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 25.0
+    "hit_rate": 12.5
   },
   {
     "episode": 32,
-    "reward": -3.6786231523921256,
+    "reward": -3.762867174941881,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.8796275632082743,
-    "timestamp": "2025-12-09T11:43:57.360387",
+    "timestamp": "2025-12-10T03:13:08.563458",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -1345,14 +1345,98 @@
   },
   {
     "episode": 33,
-    "reward": -3.37100511594344,
-    "success_rate": 50.0,
-    "destroyed_targets": 1,
+    "reward": -4.573823270372194,
+    "success_rate": 0,
+    "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.8761090529554412,
-    "timestamp": "2025-12-09T11:44:11.496350",
+    "timestamp": "2025-12-10T03:13:23.447416",
+    "coordination": {
+      "active_assignments": 3,
+      "idle_drones": 0,
+      "active_drones": 8,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 0.0
+  },
+  {
+    "episode": 34,
+    "reward": -3.260080679660073,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
+    "destroyed_drones": 0,
+    "epsilon": 0.8726046167436194,
+    "timestamp": "2025-12-10T03:13:37.992543",
     "coordination": {
       "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
+  },
+  {
+    "episode": 35,
+    "reward": -1.8973748246513598,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
+    "destroyed_drones": 0,
+    "epsilon": 0.8691141982766449,
+    "timestamp": "2025-12-10T03:13:52.664675",
+    "coordination": {
+      "active_assignments": 1,
       "idle_drones": 0,
       "active_drones": 6,
       "mission_log": [
@@ -1374,8 +1458,8 @@
       ]
     },
     "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 100.0,
     "artillery_damage_rate": 0.0,
     "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
@@ -1386,97 +1470,13 @@
     "hit_rate": 25.0
   },
   {
-    "episode": 34,
-    "reward": -4.354698079659685,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.8726046167436194,
-    "timestamp": "2025-12-09T11:44:26.172179",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 100.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 35,
-    "reward": -3.4616692828732885,
-    "success_rate": 100.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.8691141982766449,
-    "timestamp": "2025-12-09T11:44:40.348741",
-    "coordination": {
-      "active_assignments": 2,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
     "episode": 36,
-    "reward": -3.256817780159015,
+    "reward": -3.685322094092309,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.8656377414835383,
-    "timestamp": "2025-12-09T11:44:55.025572",
+    "timestamp": "2025-12-10T03:14:07.294698",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -1513,98 +1513,14 @@
   },
   {
     "episode": 37,
-    "reward": -4.422618132520384,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
+    "reward": 0.37550634423683177,
+    "success_rate": 100.0,
+    "destroyed_targets": 3,
     "destroyed_drones": 0,
     "epsilon": 0.8621751905176042,
-    "timestamp": "2025-12-09T11:45:09.577167",
+    "timestamp": "2025-12-10T03:14:20.997800",
     "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 100.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 38,
-    "reward": -3.9691112782053417,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.8587264897555338,
-    "timestamp": "2025-12-09T11:45:23.972861",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 39,
-    "reward": -3.7010918262464174,
-    "success_rate": 50.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.8552915837965116,
-    "timestamp": "2025-12-09T11:45:38.851704",
-    "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 1,
       "idle_drones": 0,
       "active_drones": 6,
       "mission_log": [
@@ -1625,30 +1541,30 @@
         }
       ]
     },
-    "tank_rate": 0.0,
+    "tank_rate": 100.0,
     "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 100.0,
+    "artillery_rate": 100.0,
+    "artillery_damage_rate": 0.0,
     "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 25.0
+    "hit_rate": 37.5
   },
   {
-    "episode": 40,
-    "reward": -3.5300410534993305,
-    "success_rate": 100.0,
-    "destroyed_targets": 1,
+    "episode": 38,
+    "reward": -4.735740131552931,
+    "success_rate": 0,
+    "destroyed_targets": 0,
     "destroyed_drones": 0,
-    "epsilon": 0.8518704174613255,
-    "timestamp": "2025-12-09T11:45:53.560931",
+    "epsilon": 0.8587264897555338,
+    "timestamp": "2025-12-10T03:14:35.890660",
     "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 3,
       "idle_drones": 0,
-      "active_drones": 7,
+      "active_drones": 8,
       "mission_log": [
         {
           "action": "full_assign",
@@ -1671,22 +1587,106 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 0.0
+  },
+  {
+    "episode": 39,
+    "reward": -4.760742661445816,
+    "success_rate": 0,
+    "destroyed_targets": 0,
+    "destroyed_drones": 0,
+    "epsilon": 0.8552915837965116,
+    "timestamp": "2025-12-10T03:14:51.113981",
+    "coordination": {
+      "active_assignments": 3,
+      "idle_drones": 0,
+      "active_drones": 8,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 0.0
+  },
+  {
+    "episode": 40,
+    "reward": -1.520506630325686,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
+    "destroyed_drones": 0,
+    "epsilon": 0.8518704174613255,
+    "timestamp": "2025-12-10T03:15:05.749843",
+    "coordination": {
+      "active_assignments": 1,
+      "idle_drones": 0,
+      "active_drones": 6,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
     "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 12.5
+    "hit_rate": 25.0
   },
   {
     "episode": 41,
-    "reward": -3.663607045876322,
+    "reward": -3.87022925872859,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.8484629357914802,
-    "timestamp": "2025-12-09T11:46:16.235922",
+    "timestamp": "2025-12-10T03:15:29.940630",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -1723,12 +1723,12 @@
   },
   {
     "episode": 42,
-    "reward": -4.368301298292575,
+    "reward": -4.574359087470319,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.8450690840483143,
-    "timestamp": "2025-12-09T11:46:31.195429",
+    "timestamp": "2025-12-10T03:15:44.865616",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -1765,16 +1765,16 @@
   },
   {
     "episode": 43,
-    "reward": -3.227417748663309,
-    "success_rate": 50.0,
+    "reward": -2.7505654974665634,
+    "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.841688807712121,
-    "timestamp": "2025-12-09T11:46:45.930496",
+    "timestamp": "2025-12-10T03:15:59.814647",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 6,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -1795,24 +1795,24 @@
     },
     "tank_rate": 0.0,
     "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 100.0,
-    "infantry_rate": 100.0,
+    "artillery_rate": 100.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 25.0
+    "hit_rate": 12.5
   },
   {
     "episode": 44,
-    "reward": -3.5427568003278713,
+    "reward": -3.72844103345927,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.8383220524812725,
-    "timestamp": "2025-12-09T11:47:00.841118",
+    "timestamp": "2025-12-10T03:16:14.481576",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -1849,16 +1849,16 @@
   },
   {
     "episode": 45,
-    "reward": -4.425268267800415,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -1.7317910706253112,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
     "destroyed_drones": 0,
     "epsilon": 0.8349687642713474,
-    "timestamp": "2025-12-09T11:47:15.627423",
+    "timestamp": "2025-12-10T03:16:29.063123",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 1,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 6,
       "mission_log": [
         {
           "action": "full_assign",
@@ -1879,28 +1879,28 @@
     },
     "tank_rate": 0.0,
     "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
+    "artillery_rate": 100.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 25.0
   },
   {
     "episode": 46,
-    "reward": -4.621220753668454,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -2.4623449468457888,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.8316288892142619,
-    "timestamp": "2025-12-09T11:47:30.517882",
+    "timestamp": "2025-12-10T03:16:43.807914",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -1919,7 +1919,7 @@
         }
       ]
     },
-    "tank_rate": 0.0,
+    "tank_rate": 100.0,
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
@@ -1929,20 +1929,20 @@
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 47,
-    "reward": -4.5916053296413715,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -3.883466733521805,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.8283023736574049,
-    "timestamp": "2025-12-09T11:47:45.239379",
+    "timestamp": "2025-12-10T03:16:59.039815",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -1965,26 +1965,26 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 48,
-    "reward": -3.898343317503977,
+    "reward": -1.4042299760478358,
     "success_rate": 100.0,
-    "destroyed_targets": 1,
+    "destroyed_targets": 2,
     "destroyed_drones": 0,
     "epsilon": 0.8249891641627752,
-    "timestamp": "2025-12-09T11:48:00.070657",
+    "timestamp": "2025-12-10T03:17:13.517092",
     "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 1,
       "idle_drones": 0,
-      "active_drones": 7,
+      "active_drones": 6,
       "mission_log": [
         {
           "action": "full_assign",
@@ -2000,10 +2000,15 @@
           "action": "full_assign",
           "target_id": 2,
           "type": "infantry"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
         }
       ]
     },
-    "tank_rate": 0.0,
+    "tank_rate": 100.0,
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
@@ -2013,20 +2018,20 @@
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 12.5
+    "hit_rate": 25.0
   },
   {
     "episode": 49,
-    "reward": -3.39807191966513,
+    "reward": -1.7904796704969306,
     "success_rate": 100.0,
-    "destroyed_targets": 1,
+    "destroyed_targets": 2,
     "destroyed_drones": 0,
     "epsilon": 0.8216892075061242,
-    "timestamp": "2025-12-09T11:48:14.528779",
+    "timestamp": "2025-12-10T03:17:28.132864",
     "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 1,
       "idle_drones": 0,
-      "active_drones": 7,
+      "active_drones": 6,
       "mission_log": [
         {
           "action": "full_assign",
@@ -2047,7 +2052,7 @@
     },
     "tank_rate": 0.0,
     "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
+    "artillery_rate": 100.0,
     "artillery_damage_rate": 0.0,
     "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
@@ -2055,16 +2060,16 @@
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 12.5
+    "hit_rate": 25.0
   },
   {
     "episode": 50,
-    "reward": -3.422347590639717,
+    "reward": -2.8837118575136707,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.8184024506760996,
-    "timestamp": "2025-12-09T11:48:29.039526",
+    "timestamp": "2025-12-10T03:17:43.058134",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -2089,9 +2094,9 @@
     },
     "tank_rate": 0.0,
     "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
+    "artillery_rate": 100.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
+    "infantry_rate": 0.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
@@ -2101,16 +2106,16 @@
   },
   {
     "episode": 51,
-    "reward": -4.517956731436255,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -1.6198687063010468,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
     "destroyed_drones": 0,
     "epsilon": 0.8151288408733952,
-    "timestamp": "2025-12-09T11:48:44.058517",
+    "timestamp": "2025-12-10T03:17:58.133262",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 1,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 6,
       "mission_log": [
         {
           "action": "full_assign",
@@ -2131,28 +2136,28 @@
     },
     "tank_rate": 0.0,
     "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
+    "artillery_rate": 100.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 25.0
   },
   {
     "episode": 52,
-    "reward": -4.801035076762614,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -3.4472058607128027,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.8118683255099016,
-    "timestamp": "2025-12-09T11:48:59.044045",
+    "timestamp": "2025-12-10T03:18:12.901820",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -2175,22 +2180,22 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 53,
-    "reward": -4.687944651595012,
+    "reward": -4.316777797827476,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
     "epsilon": 0.8086208522078621,
-    "timestamp": "2025-12-09T11:49:13.854106",
+    "timestamp": "2025-12-10T03:18:28.032886",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -2227,12 +2232,54 @@
   },
   {
     "episode": 54,
-    "reward": -3.5482604536970266,
+    "reward": -4.6545371090482766,
+    "success_rate": 0,
+    "destroyed_targets": 0,
+    "destroyed_drones": 0,
+    "epsilon": 0.8053863687990306,
+    "timestamp": "2025-12-10T03:18:43.155075",
+    "coordination": {
+      "active_assignments": 3,
+      "idle_drones": 0,
+      "active_drones": 8,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 0.0
+  },
+  {
+    "episode": 55,
+    "reward": -2.936024809990651,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
-    "epsilon": 0.8053863687990306,
-    "timestamp": "2025-12-09T11:49:28.434282",
+    "epsilon": 0.8021648233238344,
+    "timestamp": "2025-12-10T03:18:58.333729",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -2257,50 +2304,8 @@
     },
     "tank_rate": 0.0,
     "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
+    "artillery_rate": 100.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 55,
-    "reward": -4.285386567261699,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.8021648233238344,
-    "timestamp": "2025-12-09T11:49:43.035204",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 100.0,
     "infantry_rate": 0.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
@@ -2311,180 +2316,12 @@
   },
   {
     "episode": 56,
-    "reward": -4.677080116778502,
-    "success_rate": 0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.798956164030539,
-    "timestamp": "2025-12-09T11:49:59.512484",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 8,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 0.0
-  },
-  {
-    "episode": 57,
-    "reward": -4.314672448743979,
-    "success_rate": 0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.7957603393744169,
-    "timestamp": "2025-12-09T11:50:14.993724",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 8,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 0.0
-  },
-  {
-    "episode": 58,
-    "reward": -3.728915561496694,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.7925772980169192,
-    "timestamp": "2025-12-09T11:50:30.220579",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 6,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 25.0
-  },
-  {
-    "episode": 59,
-    "reward": -3.573233510703858,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.7894069888248515,
-    "timestamp": "2025-12-09T11:50:45.428586",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 6,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 100.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 25.0
-  },
-  {
-    "episode": 60,
-    "reward": -3.4732519051988655,
+    "reward": -3.5672596395239315,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
-    "epsilon": 0.7862493608695521,
-    "timestamp": "2025-12-09T11:51:02.266145",
+    "epsilon": 0.798956164030539,
+    "timestamp": "2025-12-10T03:19:13.033030",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -2520,13 +2357,139 @@
     "hit_rate": 12.5
   },
   {
-    "episode": 61,
-    "reward": -4.416813871617232,
+    "episode": 57,
+    "reward": -3.868934952439147,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
+    "destroyed_drones": 0,
+    "epsilon": 0.7957603393744169,
+    "timestamp": "2025-12-10T03:19:27.924611",
+    "coordination": {
+      "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
+  },
+  {
+    "episode": 58,
+    "reward": -3.0974089350907916,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
+    "destroyed_drones": 0,
+    "epsilon": 0.7925772980169192,
+    "timestamp": "2025-12-10T03:19:42.735274",
+    "coordination": {
+      "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 100.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
+  },
+  {
+    "episode": 59,
+    "reward": -3.5880594309962985,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
+    "destroyed_drones": 0,
+    "epsilon": 0.7894069888248515,
+    "timestamp": "2025-12-10T03:19:57.647783",
+    "coordination": {
+      "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
+  },
+  {
+    "episode": 60,
+    "reward": -4.70960639361027,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
-    "epsilon": 0.7831043634260739,
-    "timestamp": "2025-12-09T11:51:27.685853",
+    "epsilon": 0.7862493608695521,
+    "timestamp": "2025-12-10T03:20:12.610979",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -2560,185 +2523,59 @@
     "radar_rate": 0,
     "radar_damage_rate": 0,
     "hit_rate": 0.0
+  },
+  {
+    "episode": 61,
+    "reward": -2.3901216726395154,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
+    "destroyed_drones": 0,
+    "epsilon": 0.7831043634260739,
+    "timestamp": "2025-12-10T03:20:35.973311",
+    "coordination": {
+      "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
   },
   {
     "episode": 62,
-    "reward": -3.992269210892727,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
+    "reward": -1.474710703601696,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
     "destroyed_drones": 0,
     "epsilon": 0.7799719459723696,
-    "timestamp": "2025-12-09T11:51:43.162815",
+    "timestamp": "2025-12-10T03:20:50.928521",
     "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 63,
-    "reward": -4.096658024740338,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.7768520581884801,
-    "timestamp": "2025-12-09T11:51:58.452192",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 64,
-    "reward": -4.587603868325026,
-    "success_rate": 0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.7737446499557262,
-    "timestamp": "2025-12-09T11:52:13.555744",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 8,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 0.0
-  },
-  {
-    "episode": 65,
-    "reward": -4.4035087127366275,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.7706496713559033,
-    "timestamp": "2025-12-09T11:52:28.656020",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 66,
-    "reward": -2.9057453531309614,
-    "success_rate": 50.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.7675670726704797,
-    "timestamp": "2025-12-09T11:52:44.540580",
-    "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 1,
       "idle_drones": 0,
       "active_drones": 6,
       "mission_log": [
@@ -2759,8 +2596,181 @@
         }
       ]
     },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 25.0
+  },
+  {
+    "episode": 63,
+    "reward": -0.812223027351069,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
+    "destroyed_drones": 0,
+    "epsilon": 0.7768520581884801,
+    "timestamp": "2025-12-10T03:21:05.804004",
+    "coordination": {
+      "active_assignments": 1,
+      "idle_drones": 0,
+      "active_drones": 6,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 100.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 25.0
+  },
+  {
+    "episode": 64,
+    "reward": -3.4313540058277647,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
+    "destroyed_drones": 0,
+    "epsilon": 0.7737446499557262,
+    "timestamp": "2025-12-10T03:21:20.582557",
+    "coordination": {
+      "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
     "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
+  },
+  {
+    "episode": 65,
+    "reward": -0.7240173396490455,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
+    "destroyed_drones": 0,
+    "epsilon": 0.7706496713559033,
+    "timestamp": "2025-12-10T03:21:35.444178",
+    "coordination": {
+      "active_assignments": 1,
+      "idle_drones": 0,
+      "active_drones": 6,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 100.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 25.0
+  },
+  {
+    "episode": 66,
+    "reward": -1.2234862568000113,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
+    "destroyed_drones": 0,
+    "epsilon": 0.7675670726704797,
+    "timestamp": "2025-12-10T03:21:51.060192",
+    "coordination": {
+      "active_assignments": 1,
+      "idle_drones": 0,
+      "active_drones": 6,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        }
+      ]
+    },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
     "infantry_rate": 100.0,
@@ -2773,14 +2783,14 @@
   },
   {
     "episode": 67,
-    "reward": -3.134933199114266,
-    "success_rate": 50.0,
-    "destroyed_targets": 1,
+    "reward": -1.3926756382017365,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
     "destroyed_drones": 0,
     "epsilon": 0.7644968043797978,
-    "timestamp": "2025-12-09T11:53:02.731685",
+    "timestamp": "2025-12-10T03:22:05.613130",
     "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 1,
       "idle_drones": 0,
       "active_drones": 6,
       "mission_log": [
@@ -2801,8 +2811,8 @@
         }
       ]
     },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
     "infantry_rate": 100.0,
@@ -2815,14 +2825,56 @@
   },
   {
     "episode": 68,
-    "reward": -2.8340873858243207,
-    "success_rate": 50.0,
+    "reward": -3.4174089394895306,
+    "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.7614388171622787,
-    "timestamp": "2025-12-09T11:53:20.010766",
+    "timestamp": "2025-12-10T03:22:20.539775",
     "coordination": {
       "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
+  },
+  {
+    "episode": 69,
+    "reward": -1.9791059734873682,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
+    "destroyed_drones": 0,
+    "epsilon": 0.7583930618936295,
+    "timestamp": "2025-12-10T03:22:35.531601",
+    "coordination": {
+      "active_assignments": 1,
       "idle_drones": 0,
       "active_drones": 6,
       "mission_log": [
@@ -2844,7 +2896,49 @@
       ]
     },
     "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 100.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 25.0
+  },
+  {
+    "episode": 70,
+    "reward": -0.8150624868018819,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
+    "destroyed_drones": 0,
+    "epsilon": 0.755359489646055,
+    "timestamp": "2025-12-10T03:22:50.478869",
+    "coordination": {
+      "active_assignments": 1,
+      "idle_drones": 0,
+      "active_drones": 6,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
     "infantry_rate": 100.0,
@@ -2856,13 +2950,223 @@
     "hit_rate": 25.0
   },
   {
-    "episode": 69,
-    "reward": -4.026535732448912,
+    "episode": 71,
+    "reward": 1.2275444406307305,
+    "success_rate": 100.0,
+    "destroyed_targets": 3,
+    "destroyed_drones": 0,
+    "epsilon": 0.7523380516874708,
+    "timestamp": "2025-12-10T03:23:01.697929",
+    "coordination": {
+      "active_assignments": 1,
+      "idle_drones": 0,
+      "active_drones": 6,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 100.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 37.5
+  },
+  {
+    "episode": 72,
+    "reward": -2.7253230794217953,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
+    "destroyed_drones": 0,
+    "epsilon": 0.7493286994807209,
+    "timestamp": "2025-12-10T03:23:16.853106",
+    "coordination": {
+      "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
+  },
+  {
+    "episode": 73,
+    "reward": -3.370904735922976,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
+    "destroyed_drones": 0,
+    "epsilon": 0.746331384682798,
+    "timestamp": "2025-12-10T03:23:31.801681",
+    "coordination": {
+      "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
+  },
+  {
+    "episode": 74,
+    "reward": -1.8404969726593288,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
+    "destroyed_drones": 0,
+    "epsilon": 0.7433460591440668,
+    "timestamp": "2025-12-10T03:23:46.868607",
+    "coordination": {
+      "active_assignments": 1,
+      "idle_drones": 0,
+      "active_drones": 6,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 25.0
+  },
+  {
+    "episode": 75,
+    "reward": -2.7519287709399474,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
+    "destroyed_drones": 0,
+    "epsilon": 0.7403726749074906,
+    "timestamp": "2025-12-10T03:24:02.205667",
+    "coordination": {
+      "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 100.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
+  },
+  {
+    "episode": 76,
+    "reward": -4.555121232836919,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
-    "epsilon": 0.7583930618936295,
-    "timestamp": "2025-12-09T11:53:35.558246",
+    "epsilon": 0.7374111842078607,
+    "timestamp": "2025-12-10T03:24:17.475777",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -2898,274 +3202,17 @@
     "hit_rate": 0.0
   },
   {
-    "episode": 70,
-    "reward": -3.1815194405607317,
-    "success_rate": 50.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.755359489646055,
-    "timestamp": "2025-12-09T11:53:50.987897",
-    "coordination": {
-      "active_assignments": 2,
-      "idle_drones": 0,
-      "active_drones": 6,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 25.0
-  },
-  {
-    "episode": 71,
-    "reward": -3.27836262766623,
+    "episode": 77,
+    "reward": -2.226661453390545,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
-    "epsilon": 0.7523380516874708,
-    "timestamp": "2025-12-09T11:54:06.809275",
+    "epsilon": 0.7344615394710292,
+    "timestamp": "2025-12-10T03:24:32.502900",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
       "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 72,
-    "reward": -3.665433041309156,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.7493286994807209,
-    "timestamp": "2025-12-09T11:54:21.652289",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 6,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 25.0
-  },
-  {
-    "episode": 73,
-    "reward": -3.226192446384365,
-    "success_rate": 50.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.746331384682798,
-    "timestamp": "2025-12-09T11:54:36.802521",
-    "coordination": {
-      "active_assignments": 2,
-      "idle_drones": 0,
-      "active_drones": 6,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 25.0
-  },
-  {
-    "episode": 74,
-    "reward": -3.0081470255674274,
-    "success_rate": 50.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.7433460591440668,
-    "timestamp": "2025-12-09T11:54:53.282546",
-    "coordination": {
-      "active_assignments": 2,
-      "idle_drones": 0,
-      "active_drones": 6,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 25.0
-  },
-  {
-    "episode": 75,
-    "reward": -4.312568040640811,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.7403726749074906,
-    "timestamp": "2025-12-09T11:55:08.765426",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 76,
-    "reward": -0.9814681529673621,
-    "success_rate": 100.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.7374111842078607,
-    "timestamp": "2025-12-09T11:55:23.348549",
-    "coordination": {
-      "active_assignments": 2,
-      "idle_drones": 0,
-      "active_drones": 5,
       "mission_log": [
         {
           "action": "full_assign",
@@ -3199,60 +3246,18 @@
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 37.5
-  },
-  {
-    "episode": 77,
-    "reward": -2.8172904257570472,
-    "success_rate": 50.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.7344615394710292,
-    "timestamp": "2025-12-09T11:55:38.519646",
-    "coordination": {
-      "active_assignments": 2,
-      "idle_drones": 0,
-      "active_drones": 6,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 100.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 25.0
+    "hit_rate": 12.5
   },
   {
     "episode": 78,
-    "reward": -3.707320769888529,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
+    "reward": -3.624259864884953,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.731523693313145,
-    "timestamp": "2025-12-09T11:55:54.870429",
+    "timestamp": "2025-12-10T03:24:47.727628",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
       "active_drones": 7,
       "mission_log": [
@@ -3274,10 +3279,10 @@
       ]
     },
     "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
+    "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
@@ -3287,96 +3292,12 @@
   },
   {
     "episode": 79,
-    "reward": -3.6432142979401303,
-    "success_rate": 100.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.7285975985398925,
-    "timestamp": "2025-12-09T11:56:10.291235",
-    "coordination": {
-      "active_assignments": 2,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 80,
-    "reward": -3.6341861896763827,
-    "success_rate": 100.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.725683208145733,
-    "timestamp": "2025-12-09T11:56:27.914197",
-    "coordination": {
-      "active_assignments": 2,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 81,
-    "reward": -4.822743301304647,
+    "reward": -4.720299270604987,
     "success_rate": 0,
     "destroyed_targets": 0,
     "destroyed_drones": 0,
-    "epsilon": 0.72278047531315,
-    "timestamp": "2025-12-09T11:56:55.658534",
+    "epsilon": 0.7285975985398925,
+    "timestamp": "2025-12-10T03:25:03.160113",
     "coordination": {
       "active_assignments": 3,
       "idle_drones": 0,
@@ -3412,17 +3333,17 @@
     "hit_rate": 0.0
   },
   {
-    "episode": 82,
-    "reward": -3.248757801374407,
-    "success_rate": 100.0,
-    "destroyed_targets": 1,
+    "episode": 80,
+    "reward": -4.6137540489346485,
+    "success_rate": 0,
+    "destroyed_targets": 0,
     "destroyed_drones": 0,
-    "epsilon": 0.7198893534118974,
-    "timestamp": "2025-12-09T11:57:13.036935",
+    "epsilon": 0.725683208145733,
+    "timestamp": "2025-12-10T03:25:18.485666",
     "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 3,
       "idle_drones": 0,
-      "active_drones": 7,
+      "active_drones": 8,
       "mission_log": [
         {
           "action": "full_assign",
@@ -3445,24 +3366,108 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 0.0
+  },
+  {
+    "episode": 81,
+    "reward": -1.6286222292661408,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
+    "destroyed_drones": 0,
+    "epsilon": 0.72278047531315,
+    "timestamp": "2025-12-10T03:25:41.909429",
+    "coordination": {
+      "active_assignments": 1,
+      "idle_drones": 0,
+      "active_drones": 6,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 100.0,
+    "artillery_damage_rate": 0.0,
     "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 12.5
+    "hit_rate": 25.0
+  },
+  {
+    "episode": 82,
+    "reward": -4.544481075687159,
+    "success_rate": 0,
+    "destroyed_targets": 0,
+    "destroyed_drones": 0,
+    "epsilon": 0.7198893534118974,
+    "timestamp": "2025-12-10T03:25:57.543808",
+    "coordination": {
+      "active_assignments": 3,
+      "idle_drones": 0,
+      "active_drones": 8,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 0.0
   },
   {
     "episode": 83,
-    "reward": -4.475011976625563,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
+    "reward": -2.4059341696386713,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.7170097959982499,
-    "timestamp": "2025-12-09T11:57:30.720569",
+    "timestamp": "2025-12-10T03:26:12.677254",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
       "active_drones": 7,
       "mission_log": [
@@ -3483,8 +3488,8 @@
         }
       ]
     },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
     "infantry_rate": 0.0,
@@ -3497,98 +3502,14 @@
   },
   {
     "episode": 84,
-    "reward": -3.9185675671420803,
+    "reward": -1.5759690731388554,
     "success_rate": 100.0,
-    "destroyed_targets": 1,
+    "destroyed_targets": 2,
     "destroyed_drones": 0,
     "epsilon": 0.7141417568142568,
-    "timestamp": "2025-12-09T11:57:47.837589",
+    "timestamp": "2025-12-10T03:26:27.663189",
     "coordination": {
-      "active_assignments": 2,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 85,
-    "reward": -3.568188620097677,
-    "success_rate": 100.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.7112851897869998,
-    "timestamp": "2025-12-09T11:58:04.739938",
-    "coordination": {
-      "active_assignments": 2,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
-    "episode": 86,
-    "reward": -3.1772301563828953,
-    "success_rate": 50.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.7084400490278518,
-    "timestamp": "2025-12-09T11:58:21.476168",
-    "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 1,
       "idle_drones": 0,
       "active_drones": 6,
       "mission_log": [
@@ -3610,7 +3531,133 @@
       ]
     },
     "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 100.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 25.0
+  },
+  {
+    "episode": 85,
+    "reward": -4.473896319937355,
+    "success_rate": 0,
+    "destroyed_targets": 0,
+    "destroyed_drones": 0,
+    "epsilon": 0.7112851897869998,
+    "timestamp": "2025-12-10T03:26:43.016937",
+    "coordination": {
+      "active_assignments": 3,
+      "idle_drones": 0,
+      "active_drones": 8,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 0.0
+  },
+  {
+    "episode": 86,
+    "reward": -3.572122258453832,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
+    "destroyed_drones": 0,
+    "epsilon": 0.7084400490278518,
+    "timestamp": "2025-12-10T03:26:58.514346",
+    "coordination": {
+      "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 100.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
+  },
+  {
+    "episode": 87,
+    "reward": -1.5056079665915338,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
+    "destroyed_drones": 0,
+    "epsilon": 0.7056062888317405,
+    "timestamp": "2025-12-10T03:27:13.352343",
+    "coordination": {
+      "active_assignments": 1,
+      "idle_drones": 0,
+      "active_drones": 6,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
     "infantry_rate": 100.0,
@@ -3622,57 +3669,15 @@
     "hit_rate": 25.0
   },
   {
-    "episode": 87,
-    "reward": -3.8408204913765633,
-    "success_rate": 100.0,
-    "destroyed_targets": 1,
-    "destroyed_drones": 0,
-    "epsilon": 0.7056062888317405,
-    "timestamp": "2025-12-09T11:58:38.497071",
-    "coordination": {
-      "active_assignments": 2,
-      "idle_drones": 0,
-      "active_drones": 7,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 0.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 12.5
-  },
-  {
     "episode": 88,
-    "reward": -3.129881243440035,
-    "success_rate": 50.0,
-    "destroyed_targets": 1,
+    "reward": -0.5923580588011771,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
     "destroyed_drones": 0,
     "epsilon": 0.7027838636764135,
-    "timestamp": "2025-12-09T11:58:55.324510",
+    "timestamp": "2025-12-10T03:27:28.453721",
     "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 1,
       "idle_drones": 0,
       "active_drones": 6,
       "mission_log": [
@@ -3693,11 +3698,11 @@
         }
       ]
     },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 100.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
+    "infantry_rate": 0.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
@@ -3707,16 +3712,16 @@
   },
   {
     "episode": 89,
-    "reward": -4.4231502265519715,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -3.4272517797205566,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.6999727282217079,
-    "timestamp": "2025-12-09T11:59:13.086057",
+    "timestamp": "2025-12-10T03:27:43.541864",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -3739,26 +3744,26 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 90,
-    "reward": -4.204937839741856,
-    "success_rate": 0,
-    "destroyed_targets": 0,
+    "reward": -3.4392625868534763,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.6971728373088211,
-    "timestamp": "2025-12-09T11:59:29.608779",
+    "timestamp": "2025-12-10T03:27:58.892541",
     "coordination": {
-      "active_assignments": 3,
+      "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 8,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -3781,24 +3786,24 @@
     "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
+    "infantry_rate": 100.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 0.0
+    "hit_rate": 12.5
   },
   {
     "episode": 91,
-    "reward": -3.079516691210287,
-    "success_rate": 50.0,
-    "destroyed_targets": 1,
+    "reward": -1.3744506634506193,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
     "destroyed_drones": 0,
     "epsilon": 0.6943841459595858,
-    "timestamp": "2025-12-09T11:59:45.258543",
+    "timestamp": "2025-12-10T03:28:13.912693",
     "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 1,
       "idle_drones": 0,
       "active_drones": 6,
       "mission_log": [
@@ -3819,8 +3824,8 @@
         }
       ]
     },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
     "infantry_rate": 100.0,
@@ -3833,12 +3838,54 @@
   },
   {
     "episode": 92,
-    "reward": -3.3936888865912476,
+    "reward": -4.371238475239567,
+    "success_rate": 0,
+    "destroyed_targets": 0,
+    "destroyed_drones": 0,
+    "epsilon": 0.6916066093757474,
+    "timestamp": "2025-12-10T03:28:29.478983",
+    "coordination": {
+      "active_assignments": 3,
+      "idle_drones": 0,
+      "active_drones": 8,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 0.0
+  },
+  {
+    "episode": 93,
+    "reward": -3.549021102598724,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
-    "epsilon": 0.6916066093757474,
-    "timestamp": "2025-12-09T12:00:01.616094",
+    "epsilon": 0.6888401829382443,
+    "timestamp": "2025-12-10T03:28:44.721763",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -3874,55 +3921,13 @@
     "hit_rate": 12.5
   },
   {
-    "episode": 93,
-    "reward": -3.7567384525634724,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.6888401829382443,
-    "timestamp": "2025-12-09T12:00:17.311943",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 6,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 0.0,
-    "infantry_rate": 0.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 25.0
-  },
-  {
     "episode": 94,
-    "reward": -3.4526820061094066,
+    "reward": -3.5497826278263602,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.6860848222064914,
-    "timestamp": "2025-12-09T12:00:33.241607",
+    "timestamp": "2025-12-10T03:29:00.326688",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -3959,16 +3964,16 @@
   },
   {
     "episode": 95,
-    "reward": -2.547204912261558,
-    "success_rate": 50.0,
+    "reward": -2.2308506197272764,
+    "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.6833404829176654,
-    "timestamp": "2025-12-09T12:00:48.454973",
+    "timestamp": "2025-12-10T03:29:15.417866",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 5,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -3984,80 +3989,33 @@
           "action": "full_assign",
           "target_id": 2,
           "type": "infantry"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
         }
       ]
     },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
-    "infantry_damage_rate": 0.0,
-    "aircraft_rate": 0,
-    "aircraft_damage_rate": 0,
-    "radar_rate": 0,
-    "radar_damage_rate": 0,
-    "hit_rate": 37.5
-  },
-  {
-    "episode": 96,
-    "reward": -3.6116984117620534,
-    "success_rate": 0.0,
-    "destroyed_targets": 0,
-    "destroyed_drones": 0,
-    "epsilon": 0.6806071209859947,
-    "timestamp": "2025-12-09T12:01:04.932089",
-    "coordination": {
-      "active_assignments": 3,
-      "idle_drones": 0,
-      "active_drones": 6,
-      "mission_log": [
-        {
-          "action": "full_assign",
-          "target_id": 0,
-          "type": "tank"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 1,
-          "type": "artillery"
-        },
-        {
-          "action": "full_assign",
-          "target_id": 2,
-          "type": "infantry"
-        }
-      ]
-    },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
-    "artillery_damage_rate": 100.0,
     "infantry_rate": 0.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 25.0
+    "hit_rate": 12.5
   },
   {
-    "episode": 97,
-    "reward": -3.0741395012097383,
-    "success_rate": 50.0,
+    "episode": 96,
+    "reward": -2.561065937557707,
+    "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
-    "epsilon": 0.6778846925020507,
-    "timestamp": "2025-12-09T12:01:20.711847",
+    "epsilon": 0.6806071209859947,
+    "timestamp": "2025-12-10T03:29:30.710597",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
-      "active_drones": 6,
+      "active_drones": 7,
       "mission_log": [
         {
           "action": "full_assign",
@@ -4077,25 +4035,25 @@
       ]
     },
     "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
-    "artillery_rate": 0.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 100.0,
     "artillery_damage_rate": 0.0,
-    "infantry_rate": 100.0,
+    "infantry_rate": 0.0,
     "infantry_damage_rate": 0.0,
     "aircraft_rate": 0,
     "aircraft_damage_rate": 0,
     "radar_rate": 0,
     "radar_damage_rate": 0,
-    "hit_rate": 25.0
+    "hit_rate": 12.5
   },
   {
-    "episode": 98,
-    "reward": -3.364767169023383,
+    "episode": 97,
+    "reward": -3.567088853264431,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
-    "epsilon": 0.6751731537320426,
-    "timestamp": "2025-12-09T12:01:36.236547",
+    "epsilon": 0.6778846925020507,
+    "timestamp": "2025-12-10T03:29:45.826534",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -4131,13 +4089,55 @@
     "hit_rate": 12.5
   },
   {
+    "episode": 98,
+    "reward": -2.3617317878302924,
+    "success_rate": 100.0,
+    "destroyed_targets": 1,
+    "destroyed_drones": 0,
+    "epsilon": 0.6751731537320426,
+    "timestamp": "2025-12-10T03:30:01.309423",
+    "coordination": {
+      "active_assignments": 2,
+      "idle_drones": 0,
+      "active_drones": 7,
+      "mission_log": [
+        {
+          "action": "full_assign",
+          "target_id": 0,
+          "type": "tank"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 1,
+          "type": "artillery"
+        },
+        {
+          "action": "full_assign",
+          "target_id": 2,
+          "type": "infantry"
+        }
+      ]
+    },
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
+    "artillery_rate": 0.0,
+    "artillery_damage_rate": 0.0,
+    "infantry_rate": 0.0,
+    "infantry_damage_rate": 0.0,
+    "aircraft_rate": 0,
+    "aircraft_damage_rate": 0,
+    "radar_rate": 0,
+    "radar_damage_rate": 0,
+    "hit_rate": 12.5
+  },
+  {
     "episode": 99,
-    "reward": -3.5514780504620456,
+    "reward": -3.3594942121434266,
     "success_rate": 100.0,
     "destroyed_targets": 1,
     "destroyed_drones": 0,
     "epsilon": 0.6724724611171143,
-    "timestamp": "2025-12-09T12:01:52.379235",
+    "timestamp": "2025-12-10T03:30:16.431904",
     "coordination": {
       "active_assignments": 2,
       "idle_drones": 0,
@@ -4174,14 +4174,14 @@
   },
   {
     "episode": 100,
-    "reward": -2.868794301128157,
-    "success_rate": 50.0,
-    "destroyed_targets": 1,
+    "reward": -1.3055114115790811,
+    "success_rate": 100.0,
+    "destroyed_targets": 2,
     "destroyed_drones": 0,
     "epsilon": 0.6697825712726458,
-    "timestamp": "2025-12-09T12:02:07.293292",
+    "timestamp": "2025-12-10T03:30:31.426473",
     "coordination": {
-      "active_assignments": 2,
+      "active_assignments": 1,
       "idle_drones": 0,
       "active_drones": 6,
       "mission_log": [
@@ -4202,8 +4202,8 @@
         }
       ]
     },
-    "tank_rate": 0.0,
-    "tank_damage_rate": 100.0,
+    "tank_rate": 100.0,
+    "tank_damage_rate": 0.0,
     "artillery_rate": 0.0,
     "artillery_damage_rate": 0.0,
     "infantry_rate": 100.0,

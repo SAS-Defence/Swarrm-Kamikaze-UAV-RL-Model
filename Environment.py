@@ -82,8 +82,13 @@ class SwarmBattlefield2D:
 
         print(f"[ENV] Harita: {width}x{height}, {num_drones} drone, {num_targets} hedef")
 
-    def reset(self):
-        """Ortamı sıfırla"""
+    def reset(self, difficulty=None):
+        """Ortamı sıfırla (Difficulty: 0=Easy, 1=Med, 2=Hard)"""
+        if difficulty is not None:
+            self.difficulty = difficulty
+        elif not hasattr(self, 'difficulty'):
+            self.difficulty = 2  # Default Hard
+            
         self.targets = []
         self.drones = []
         self.time_step = 0
@@ -94,7 +99,7 @@ class SwarmBattlefield2D:
         self._deploy_drones()
 
         initial_observations = self.get_observations()
-        print(f"[ENV] Reset: {len(self.targets)} hedef ({self._get_target_summary()})")
+        print(f"[ENV] Reset (Diff={self.difficulty}): {len(self.targets)} hedef ({self._get_target_summary()})")
         return initial_observations
 
     def _deploy_targets_strategically(self):
@@ -121,10 +126,23 @@ class SwarmBattlefield2D:
                     x = random.randint(self.width // 3, self.width - 100)
                     y = random.randint(100, self.height - 100)
 
+                # ZORLUK SEVİYESİNE GÖRE HP AYARI
+                base_hp = self.target_types[target_type]['hp']
+                
+                if hasattr(self, 'difficulty') and self.difficulty == 0:
+                     # Easy Mode: Her şey tek vuruşluk
+                     current_hp = 1
+                elif hasattr(self, 'difficulty') and self.difficulty == 1:
+                     # Medium Mode: Tank/Uçak biraz daha dayanıklı (1 değil, 2)
+                     current_hp = min(base_hp, 2)
+                else:
+                     # Hard Mode: Orijinal HP
+                     current_hp = base_hp
+
                 self.targets.append({
                     'id': target_count, 'type': target_type, 'x': x, 'y': y,
-                    'hp': self.target_types[target_type]['hp'],
-                    'max_hp': self.target_types[target_type]['hp'],
+                    'hp': current_hp,
+                    'max_hp': current_hp,
                     'importance': self.target_types[target_type]['importance'],
                     'required_drones': self.target_types[target_type]['required_drones'],
                     'destroyed': False, 'detected': False, 'detected_by': set(),
@@ -136,10 +154,19 @@ class SwarmBattlefield2D:
             target_type = random.choice(list(self.target_types.keys()))
             x = random.randint(self.width // 2, self.width - 100)
             y = random.randint(100, self.height - 100)
+            # ZORLUK SEVİYESİNE GÖRE HP AYARI (Random Hedefler İçin)
+            base_hp = self.target_types[target_type]['hp']
+            if hasattr(self, 'difficulty') and self.difficulty == 0:
+                 current_hp = 1
+            elif hasattr(self, 'difficulty') and self.difficulty == 1:
+                 current_hp = min(base_hp, 2)
+            else:
+                 current_hp = base_hp
+
             self.targets.append({
                 'id': len(self.targets), 'type': target_type, 'x': x, 'y': y,
-                'hp': self.target_types[target_type]['hp'],
-                'max_hp': self.target_types[target_type]['hp'],
+                'hp': current_hp,
+                'max_hp': current_hp,
                 'importance': self.target_types[target_type]['importance'],
                 'required_drones': self.target_types[target_type]['required_drones'],
                 'destroyed': False, 'detected': False, 'detected_by': set(),
