@@ -1,4 +1,4 @@
-# Angajman-RL: Autonomous Drone Swarm Kamikaze Simulation
+# Kamikaze Drone Swarm Engagement: Autonomous Drone Swarm Kamikaze Simulation
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-MARL-orange)
@@ -6,7 +6,7 @@
 
 ## 🛸 Project Overview
 
-**Angajman-RL** is an advanced Multi-Agent Reinforcement Learning (MARL) project designed to simulate and train a swarm of autonomous drones for coordinated kamikaze attacks. The project utilizes a hierarchical control system combining a global **Swarm Coordinator** for high-level strategy and individual **RL Agents** for low-level tactical execution.
+**Kamikaze Drone Swarm Engagement** is an advanced Multi-Agent Reinforcement Learning (MARL) project designed to simulate and train a swarm of autonomous drones for coordinated kamikaze attacks. The project utilizes a hierarchical control system combining a global **Swarm Coordinator** for high-level strategy and individual **RL Agents** for low-level tactical execution.
 
 The goal is to optimize the swarm's ability to neutralize high-value targets (Anti-Air Defense Systems - HSS) while navigating a hostile environment filled with dynamic threats.
 
@@ -92,7 +92,7 @@ Ensure you have Python 3.8+ installed. The project relies on standard data scien
 
 ```bash
 # Clone the repository
-git clone https://github.com/YakupTekeli/Angajman-RL.git
+git clone https://github.com/YakupTekeli/Kamikaze-Drone-Swarm-Engagement.git
 cd Angajman-RL
 
 # Install dependencies
